@@ -1,0 +1,1270 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>漫蛙防走失页面 - 漫画备份入口与更新追踪</title>
+<meta name="description" content="漫蛙防走失页面汇总漫画站点备用入口、镜像域名与更新追踪方法，包含离线备份、域名切换、收藏同步、章节追更等具体条目，适合长期追漫与担心入口失效的读者查看。">
+<meta name="keywords" content="备用入口,镜像域名,离线备份,收藏同步,章节追更">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d5c4a'/%3E%3Cpath d='M18 40c0-10 6-18 14-18s14 8 14 18' fill='none' stroke='%23f2c14e' stroke-width='5' stroke-linecap='round'/%3E%3Ccircle cx='24' cy='44' r='4' fill='%23f2c14e'/%3E%3Ccircle cx='40' cy='44' r='4' fill='%23f2c14e'/%3E%3C/svg%3E">
+<style>
+:root{
+  --green-900:#123b30;
+  --green-800:#1a4d3e;
+  --green-700:#1d5c4a;
+  --green-600:#26735c;
+  --green-100:#e4efe9;
+  --green-50:#f1f7f3;
+  --gold:#f2c14e;
+  --gold-soft:#fbeec9;
+  --ink:#1c2621;
+  --ink-2:#3c4a43;
+  --muted:#6b7a72;
+  --line:#d8e3dc;
+  --bg:#f6f8f6;
+  --panel:#ffffff;
+  --danger:#b4472f;
+  --radius:12px;
+  --radius-sm:8px;
+  --shadow:0 2px 10px rgba(18,59,48,.07);
+  --shadow-lg:0 8px 28px rgba(18,59,48,.12);
+  --maxw:1320px;
+  --sticky-h:104px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--sticky-h) + 12px)}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  font-size:16px;line-height:1.75;
+}
+a{color:var(--green-700);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{line-height:1.35;margin:0}
+ul,ol{margin:0;padding-left:1.25em}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:4px}
+
+/* ---------- 公告条 + 页头 吸顶 ---------- */
+.sticky-wrap{position:sticky;top:0;z-index:100}
+.notice-bar{
+  background:linear-gradient(90deg,var(--green-900),var(--green-700));
+  color:#eaf4ee;font-size:13.5px;
+}
+.notice-bar .inner{
+  max-width:var(--maxw);margin:0 auto;padding:8px 20px;
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.notice-bar .tag{
+  background:var(--gold);color:var(--green-900);font-weight:700;
+  border-radius:999px;padding:1px 10px;font-size:12px;letter-spacing:.5px;
+}
+.notice-bar a{color:var(--gold);font-weight:600;border-bottom:1px dashed rgba(242,193,78,.6)}
+.notice-bar a:hover{text-decoration:none;border-bottom-style:solid}
+
+.site-header{
+  background:rgba(255,255,255,.96);backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);box-shadow:var(--shadow);
+}
+.header-inner{
+  max-width:var(--maxw);margin:0 auto;padding:12px 20px;
+  display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+}
+.brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.brand-mark{width:40px;height:40px;flex-shrink:0}
+.brand-text{font-size:20px;font-weight:800;color:var(--green-900);letter-spacing:.5px;white-space:nowrap}
+.main-nav{display:flex;gap:4px;flex-wrap:wrap;flex:1}
+.main-nav a{
+  padding:6px 12px;border-radius:999px;font-size:14.5px;color:var(--ink-2);
+  white-space:nowrap;transition:.15s;
+}
+.main-nav a:hover{background:var(--green-50);color:var(--green-800);text-decoration:none}
+.header-search{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.header-search input{
+  width:190px;padding:7px 12px;border:1px solid var(--line);border-radius:999px;
+  font-size:14px;background:var(--green-50);
+}
+.header-search input:focus{outline:2px solid var(--green-600);background:#fff}
+.header-search button{
+  padding:7px 14px;border:none;border-radius:999px;background:var(--green-700);color:#fff;font-size:14px;
+}
+.header-search button:hover{background:var(--green-800)}
+
+/* ---------- 首屏 ---------- */
+.hero{
+  background:
+    radial-gradient(circle at 82% 18%,rgba(242,193,78,.22),transparent 42%),
+    radial-gradient(circle at 10% 88%,rgba(38,115,92,.16),transparent 46%),
+    linear-gradient(160deg,#f4faf6 0%,#eaf3ec 60%,#e6f0e9 100%);
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+}
+.hero-inner{
+  max-width:var(--maxw);margin:0 auto;padding:44px 20px 40px;
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:36px;align-items:center;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#fff;border:1px solid var(--line);border-radius:999px;
+  padding:4px 14px;font-size:13px;color:var(--green-700);font-weight:600;margin-bottom:16px;
+}
+.hero-eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--green-600)}
+.hero h1{
+  font-size:clamp(30px,4.4vw,46px);color:var(--green-900);font-weight:900;
+  letter-spacing:1px;margin-bottom:14px;
+}
+.hero-desc{font-size:16.5px;color:var(--ink-2);max-width:560px;margin-bottom:22px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:999px;
+  font-size:15px;font-weight:600;border:1px solid transparent;transition:.15s;
+}
+.btn-primary{background:var(--green-700);color:#fff;box-shadow:0 4px 14px rgba(29,92,74,.28)}
+.btn-primary:hover{background:var(--green-800);text-decoration:none;transform:translateY(-1px)}
+.btn-ghost{background:#fff;color:var(--green-800);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--green-600);text-decoration:none}
+
+.hero-visual{position:relative}
+.hero-visual svg{width:100%;height:auto;filter:drop-shadow(0 14px 30px rgba(18,59,48,.16))}
+.hero-stats{
+  display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;
+}
+.hero-stat{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);
+  padding:8px 14px;font-size:13px;color:var(--muted);box-shadow:var(--shadow);
+}
+.hero-stat strong{display:block;font-size:18px;color:var(--green-800);font-weight:800;line-height:1.3}
+
+/* ---------- 主布局：三栏门户 ---------- */
+.layout{
+  max-width:var(--maxw);margin:0 auto;padding:28px 20px 0;
+  display:grid;grid-template-columns:180px minmax(0,1fr) 250px;gap:26px;align-items:start;
+}
+.channel-col{
+  position:sticky;top:calc(var(--sticky-h) + 16px);
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.channel-col h2{
+  font-size:13.5px;letter-spacing:2px;color:var(--muted);font-weight:700;
+  padding:14px 16px 8px;text-transform:uppercase;
+}
+.channel-list{list-style:none;margin:0;padding:0 8px 12px}
+.channel-list a{
+  display:flex;align-items:center;justify-content:space-between;gap:6px;
+  padding:8px 10px;border-radius:var(--radius-sm);font-size:14.5px;color:var(--ink-2);
+}
+.channel-list a:hover{background:var(--green-50);color:var(--green-800);text-decoration:none}
+.channel-list .num{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.channel-tip{
+  margin:10px;padding:10px 12px;background:var(--gold-soft);border-radius:var(--radius-sm);
+  font-size:12.5px;color:#6b5518;line-height:1.55;
+}
+
+.main-col{min-width:0}
+.side-col{min-width:0;position:sticky;top:calc(var(--sticky-h) + 16px);display:flex;flex-direction:column;gap:18px}
+
+/* ---------- 通用板块 ---------- */
+.panel{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:22px 24px;margin-bottom:22px;
+}
+.section-head{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:12px;
+  margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--green-100);
+}
+.section-head h2{
+  font-size:21px;color:var(--green-900);font-weight:800;letter-spacing:.3px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-head h2 .bar{width:5px;height:20px;background:var(--gold);border-radius:3px;display:inline-block}
+.section-head .sub{font-size:13px;color:var(--muted);white-space:nowrap}
+.lead{font-size:15px;color:var(--ink-2);margin-bottom:14px}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+
+/* 概览 */
+.overview-body p{margin:0 0 12px;color:var(--ink-2);font-size:15.5px;line-height:1.85}
+.overview-body p:last-child{margin-bottom:0}
+.overview-facts{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px;
+}
+.fact{
+  background:var(--green-50);border:1px solid var(--line);border-radius:var(--radius-sm);
+  padding:10px 12px;font-size:13px;color:var(--muted);
+}
+.fact strong{display:block;font-size:15.5px;color:var(--green-800);margin-bottom:2px}
+
+/* 精选卡片 */
+.card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{
+  border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+  background:#fff;display:flex;flex-direction:column;transition:.18s;
+}
+.card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px);border-color:#c3d8cd}
+.card-thumb{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--green-100)}
+.card-thumb img{width:100%;height:100%;object-fit:cover}
+.card-badge{
+  position:absolute;top:8px;left:8px;background:rgba(18,59,48,.86);color:#fff;
+  font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:999px;letter-spacing:.5px;
+}
+.card-body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:7px;flex:1}
+.card-title{font-size:15.5px;font-weight:700;color:var(--green-900);line-height:1.4}
+.card-desc{font-size:13.2px;color:var(--ink-2);line-height:1.65;flex:1}
+.tag-row{display:flex;flex-wrap:wrap;gap:5px}
+.tag{
+  font-size:11.5px;padding:1px 8px;border-radius:999px;
+  background:var(--green-50);color:var(--green-700);border:1px solid #d6e5dc;white-space:nowrap;
+}
+.tag.gold{background:var(--gold-soft);color:#7a5c0d;border-color:#f0ddaa}
+.card-meta{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;color:var(--muted);border-top:1px dashed var(--line);padding-top:7px;
+}
+.card-meta .hot{color:var(--danger);font-weight:700}
+
+/* 最新更新列表 */
+.update-list{list-style:none;padding:0;margin:0}
+.update-list li{
+  display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:12px;align-items:baseline;
+  padding:10px 2px;border-bottom:1px dashed var(--line);
+}
+.update-list li:last-child{border-bottom:none}
+.update-time{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.update-name{font-weight:700;color:var(--ink);font-size:14.5px}
+.update-note{color:var(--ink-2);font-size:13.2px}
+.update-state{font-size:11.5px;padding:1px 8px;border-radius:999px;background:var(--green-100);color:var(--green-800);white-space:nowrap}
+.update-state.warn{background:#fbe6df;color:var(--danger)}
+
+/* 分类入口 */
+.cat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.cat-item{
+  display:flex;flex-direction:column;gap:3px;padding:12px 14px;border-radius:var(--radius-sm);
+  border:1px solid var(--line);background:var(--green-50);transition:.15s;
+}
+.cat-item:hover{background:var(--green-100);border-color:#b9d3c6;text-decoration:none}
+.cat-name{font-weight:700;color:var(--green-900);font-size:14.5px}
+.cat-count{font-size:12px;color:var(--muted)}
+
+/* 深度解析 */
+.article h3{
+  font-size:17.5px;color:var(--green-800);margin:22px 0 8px;font-weight:800;
+  padding-left:11px;border-left:4px solid var(--gold);
+}
+.article h3:first-child{margin-top:0}
+.article p{margin:0 0 11px;font-size:15.3px;color:var(--ink-2);line-height:1.85}
+.article ul,.article ol{margin:0 0 12px;color:var(--ink-2);font-size:15px;line-height:1.85}
+.article li{margin-bottom:5px}
+.article strong{color:var(--green-800)}
+
+/* 对照面板 */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden;margin:14px 0}
+.compare>div{padding:14px 16px}
+.compare>div:first-child{background:#fdf6e3;border-right:1px solid var(--line)}
+.compare>div:last-child{background:var(--green-50)}
+.compare h4{font-size:14px;margin-bottom:8px;color:var(--green-900)}
+.compare ul{margin:0;padding-left:1.1em;font-size:13.6px;line-height:1.7}
+
+/* 体验指南：编号步骤 */
+.steps{list-style:none;counter-reset:step;padding:0;margin:0;display:flex;flex-direction:column;gap:12px}
+.steps li{counter-increment:step;display:grid;grid-template-columns:38px minmax(0,1fr);gap:12px;align-items:start}
+.steps li::before{
+  content:counter(step);width:34px;height:34px;border-radius:50%;
+  background:var(--green-700);color:#fff;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:15px;flex-shrink:0;
+}
+.steps h4{font-size:15px;color:var(--green-900);margin-bottom:2px}
+.steps p{margin:0;font-size:14px;color:var(--ink-2);line-height:1.7}
+
+/* FAQ */
+details.faq{
+  border:1px solid var(--line);border-radius:var(--radius-sm);margin-bottom:9px;background:#fff;overflow:hidden;
+}
+details.faq[open]{border-color:#b9d3c6;box-shadow:var(--shadow)}
+details.faq summary{
+  list-style:none;cursor:pointer;padding:12px 16px 12px 42px;position:relative;
+  font-weight:700;font-size:14.8px;color:var(--green-900);
+}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::before{
+  content:"Q";position:absolute;left:14px;top:12px;width:20px;height:20px;border-radius:50%;
+  background:var(--gold);color:var(--green-900);font-size:12px;font-weight:900;
+  display:flex;align-items:center;justify-content:center;
+}
+details.faq summary::after{
+  content:"+";position:absolute;right:16px;top:10px;font-size:19px;color:var(--green-600);font-weight:700;transition:.15s;
+}
+details.faq[open] summary::after{transform:rotate(45deg)}
+.faq-body{padding:0 16px 14px 42px;font-size:14.2px;color:var(--ink-2);line-height:1.78}
+
+/* 评论 */
+.comment-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.comment{
+  border:1px solid var(--line);border-radius:var(--radius-sm);padding:11px 13px;background:#fcfdfc;
+}
+.comment-head{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.avatar{
+  width:26px;height:26px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;
+}
+.comment-name{font-size:13px;font-weight:700;color:var(--green-800)}
+.comment-time{font-size:11.5px;color:var(--muted);margin-left:auto}
+.comment-text{font-size:13.4px;color:var(--ink-2);line-height:1.7;margin:0}
+.comment-text .ref{color:var(--green-700);font-weight:600}
+
+/* 资讯 */
+.news-list{display:flex;flex-direction:column;gap:0}
+.news-item{
+  display:grid;grid-template-columns:120px minmax(0,1fr);gap:14px;padding:13px 0;border-bottom:1px dashed var(--line);
+}
+.news-item:last-child{border-bottom:none}
+.news-item img{width:120px;height:80px;object-fit:cover;border-radius:var(--radius-sm)}
+.news-date{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;margin-bottom:1px}
+.news-title{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.news-sum{font-size:13.2px;color:var(--ink-2);line-height:1.65}
+
+/* 相关推荐 标签索引 */
+.rec-cloud{display:flex;flex-wrap:wrap;gap:8px}
+.rec-cloud a{
+  padding:6px 13px;border-radius:999px;background:#fff;border:1px solid var(--line);
+  font-size:13.5px;color:var(--ink-2);transition:.15s;
+}
+.rec-cloud a:hover{background:var(--green-700);color:#fff;border-color:var(--green-700);text-decoration:none}
+.rec-cloud a.hot-tag{background:var(--gold-soft);border-color:#f0ddaa;color:#7a5c0d}
+
+/* 榜单 */
+.rank-list{list-style:none;padding:0;margin:0;counter-reset:rank}
+.rank-list li{
+  counter-increment:rank;display:grid;grid-template-columns:26px minmax(0,1fr) auto;gap:10px;
+  align-items:center;padding:9px 2px;border-bottom:1px dashed var(--line);
+}
+.rank-list li:last-child{border-bottom:none}
+.rank-list li::before{
+  content:counter(rank);width:22px;height:22px;border-radius:6px;background:var(--green-100);
+  color:var(--green-800);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;
+}
+.rank-list li:nth-child(-n+3)::before{background:var(--gold);color:var(--green-900)}
+.rank-name{font-size:14px;font-weight:600;color:var(--ink)}
+.rank-name small{display:block;font-size:12px;font-weight:400;color:var(--muted)}
+.rank-score{font-size:13px;color:var(--danger);font-weight:800;font-variant-numeric:tabular-nums}
+
+/* 可信度分层 */
+.tier-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px}
+.tier{
+  display:grid;grid-template-columns:76px minmax(0,1fr);gap:10px;align-items:start;
+  border:1px solid var(--line);border-radius:var(--radius-sm);padding:10px 12px;
+}
+.tier-badge{font-size:12px;font-weight:800;padding:3px 8px;border-radius:6px;text-align:center}
+.tier-a{background:#dff0e6;color:#1a5c3f}
+.tier-b{background:var(--gold-soft);color:#7a5c0d}
+.tier-c{background:#fbe6df;color:var(--danger)}
+.tier h4{font-size:14px;margin-bottom:2px;color:var(--green-900)}
+.tier p{font-size:12.8px;color:var(--ink-2);margin:0;line-height:1.65}
+
+/* 侧栏 */
+.side-panel{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:16px 16px 14px;
+}
+.side-panel h2{font-size:15.5px;color:var(--green-900);font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.side-panel h2 .bar{width:4px;height:15px;background:var(--gold);border-radius:2px}
+.side-list{list-style:none;padding:0;margin:0}
+.side-list li{padding:7px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+.side-list li:last-child{border-bottom:none}
+.side-list a{color:var(--ink-2);font-weight:600}
+.side-list a:hover{color:var(--green-700)}
+.side-list .meta{font-size:11.5px;color:var(--muted);margin-top:1px}
+.side-note{font-size:12.5px;color:var(--ink-2);line-height:1.65;margin:0}
+.side-cta{
+  background:linear-gradient(150deg,var(--green-800),var(--green-600));color:#eaf4ee;
+  border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);
+}
+.side-cta h2{font-size:15.5px;margin-bottom:6px;color:#fff}
+.side-cta p{font-size:13px;margin:0 0 10px;line-height:1.65;color:#d7e8de}
+.side-cta .btn{width:100%;justify-content:center;background:var(--gold);color:var(--green-900);font-size:14px;padding:8px 14px}
+.side-cta .btn:hover{background:#f6cf6b;text-decoration:none}
+
+/* 无结果提示 */
+.no-result{
+  display:none;padding:26px 16px;text-align:center;color:var(--muted);font-size:14px;
+  background:var(--green-50);border:1px dashed var(--line);border-radius:var(--radius-sm);
+}
+.no-result.show{display:block}
+
+/* 页尾 */
+.site-footer{background:var(--green-900);color:#c9dbd2;margin-top:36px}
+.footer-inner{max-width:var(--maxw);margin:0 auto;padding:34px 20px 20px}
+.footer-top{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:28px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.12)}
+.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.footer-brand .brand-text{color:#fff;font-size:19px}
+.footer-desc{font-size:13.5px;line-height:1.75;color:#a8c2b6;max-width:340px}
+.footer-col h4{font-size:13.5px;color:var(--gold);margin-bottom:9px;letter-spacing:1px}
+.footer-col ul{list-style:none;padding:0;margin:0}
+.footer-col li{margin-bottom:6px}
+.footer-col a{color:#c9dbd2;font-size:13.2px}
+.footer-col a:hover{color:#fff}
+.footer-bottom{
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  padding-top:16px;font-size:12px;color:#8aa89b;line-height:1.7;
+}
+.footer-bottom .disclaimer{color:#7b988b}
+
+/* 响应式 */
+@media (max-width:1024px){
+  .layout{grid-template-columns:minmax(0,1fr) 260px;gap:20px}
+  .channel-col{
+    position:static;grid-column:1/-1;order:-1;
+  }
+  .channel-list{display:flex;flex-wrap:wrap;gap:4px;padding:0 10px 12px}
+  .channel-list a{flex:0 0 auto;background:var(--green-50);font-size:13.5px;padding:5px 11px}
+  .channel-list .num{display:none}
+  .channel-tip{display:none}
+  .card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cat-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .hero-inner{grid-template-columns:1fr;gap:20px}
+  .hero-visual{max-width:420px}
+  .comment-grid{grid-template-columns:1fr}
+  .overview-facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:740px){
+  :root{--sticky-h:118px}
+  .layout{grid-template-columns:1fr;padding:18px 14px 0;gap:16px}
+  .side-col{position:static}
+  .header-inner{padding:10px 14px;gap:10px}
+  .brand-text{font-size:17px}
+  .main-nav{order:3;width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px}
+  .main-nav a{font-size:13.5px;padding:5px 10px}
+  .header-search{flex:1;justify-content:flex-end}
+  .header-search input{width:130px;font-size:13px}
+  .hero-inner{padding:28px 14px 26px}
+  .hero h1{font-size:28px}
+  .hero-desc{font-size:15px}
+  .panel{padding:16px 15px;margin-bottom:16px}
+  .card-grid{grid-template-columns:1fr}
+  .cat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .overview-facts{grid-template-columns:1fr}
+  .compare{grid-template-columns:1fr}
+  .compare>div:first-child{border-right:none;border-bottom:1px solid var(--line)}
+  .update-list li{grid-template-columns:56px minmax(0,1fr);row-gap:2px}
+  .update-state{grid-column:2;justify-self:start}
+  .news-item{grid-template-columns:88px minmax(0,1fr);gap:10px}
+  .news-item img{width:88px;height:66px}
+  .footer-top{grid-template-columns:1fr;gap:18px}
+  .section-head{flex-wrap:wrap;align-items:flex-start}
+  .section-head h2{font-size:18.5px}
+  .section-head .sub{white-space:normal}
+  .steps li{grid-template-columns:30px minmax(0,1fr);gap:9px}
+  .steps li::before{width:28px;height:28px;font-size:13px}
+  details.faq summary{font-size:14px;padding-right:38px}
+  .notice-bar .inner{padding:7px 14px;font-size:12.5px}
+  .rank-list li{grid-template-columns:22px minmax(0,1fr) auto}
+  .header-search input{width:110px}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<div class="sticky-wrap">
+  <!-- 吸顶公告条 -->
+  <div class="notice-bar" role="region" aria-label="站点更新公告">
+    <div class="inner">
+      <span class="tag">更新</span>
+      <span>11 月 8 日新增 4 个可用镜像入口，<a href="/#channel-mirror">镜像域名区</a>已同步校验；本周共补充 12 条备用线路与 9 部追更记录。</span>
+    </div>
+  </div>
+
+  <!-- 吸顶页头 -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+          <rect width="64" height="64" rx="14" fill="#1d5c4a"/>
+          <path d="M17 41c0-11 6.5-19 15-19s15 8 15 19" fill="none" stroke="#f2c14e" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="24" cy="45" r="4" fill="#f2c14e"/>
+          <circle cx="40" cy="45" r="4" fill="#f2c14e"/>
+          <path d="M28 30c2-2 6-2 8 0" fill="none" stroke="#e4efe9" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+        <span class="brand-text">漫蛙防走失页面</span>
+      </div>
+      <nav class="main-nav" aria-label="主题导航">
+        <a href="/#channel-mirror">镜像入口</a>
+        <a href="/#channel-backup">离线备份</a>
+        <a href="/#channel-sync">收藏同步</a>
+        <a href="/#channel-update">追更追踪</a>
+        <a href="/#channel-guide">切换指南</a>
+        <a href="/#faq">常见问题</a>
+      </nav>
+      <div class="header-search">
+        <input type="search" id="siteSearch" placeholder="搜索条目 / 域名 / 类型" aria-label="站内内容搜索">
+        <button type="button" id="searchBtn">查找</button>
+      </div>
+    </div>
+  </header>
+</div>
+
+<!-- 首屏 -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <span class="hero-eyebrow"><span class="dot"></span>入口备份 · 域名追踪 · 追更不断档</span>
+      <h1 id="hero-title">漫蛙防走失页面</h1>
+      <p class="hero-desc">这里聚合漫画站点的备用入口、镜像域名、离线备份包与收藏同步方案，同时按作品记录章节更新节奏，帮助读者在主站无法访问时仍能找到已追漫画的下一话。</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/#channel-mirror">查看当前镜像入口</a>
+        <a class="btn btn-ghost" href="/#channel-update">追更动态</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>18</strong>可用备用线路</div>
+        <div class="hero-stat"><strong>246</strong>部在追作品</div>
+        <div class="hero-stat"><strong>11-08</strong>最近校验时间</div>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 420 330" role="img" aria-label="备用入口与章节追踪示意图">
+        <rect x="14" y="22" width="392" height="286" rx="20" fill="#ffffff" stroke="#d8e3dc" stroke-width="2"/>
+        <rect x="14" y="22" width="392" height="46" rx="20" fill="#e4efe9"/>
+        <rect x="14" y="52" width="392" height="16" fill="#e4efe9"/>
+        <circle cx="40" cy="45" r="6" fill="#f2c14e"/>
+        <circle cx="60" cy="45" r="6" fill="#26735c"/>
+        <circle cx="80" cy="45" r="6" fill="#b9d3c6"/>
+        <rect x="34" y="88" width="112" height="28" rx="14" fill="#1d5c4a"/>
+        <text x="90" y="107" font-size="13" fill="#ffffff" text-anchor="middle" font-family="sans-serif">主入口</text>
+        <path d="M152 102 H196" stroke="#b9d3c6" stroke-width="3" stroke-dasharray="6 5"/>
+        <rect x="202" y="88" width="112" height="28" rx="14" fill="#f2c14e"/>
+        <text x="258" y="107" font-size="13" fill="#123b30" text-anchor="middle" font-family="sans-serif">镜像 A 线</text>
+        <path d="M152 102 C176 102 176 140 196 140" stroke="#b9d3c6" stroke-width="3" stroke-dasharray="6 5" fill="none"/>
+        <rect x="202" y="126" width="112" height="28" rx="14" fill="#e4efe9" stroke="#b9d3c6"/>
+        <text x="258" y="145" font-size="13" fill="#1d5c4a" text-anchor="middle" font-family="sans-serif">镜像 B 线</text>
+        <rect x="34" y="176" width="356" height="2" fill="#e4efe9"/>
+        <g font-family="sans-serif">
+          <rect x="34" y="194" width="46" height="58" rx="8" fill="#e4efe9"/>
+          <rect x="90" y="194" width="46" height="58" rx="8" fill="#fbeec9"/>
+          <rect x="146" y="194" width="46" height="58" rx="8" fill="#e4efe9"/>
+          <rect x="202" y="194" width="46" height="58" rx="8" fill="#e4efe9"/>
+          <rect x="258" y="194" width="46" height="58" rx="8" fill="#fbeec9"/>
+          <rect x="314" y="194" width="46" height="58" rx="8" fill="#e4efe9"/>
+          <rect x="34" y="264" width="200" height="10" rx="5" fill="#d8e3dc"/>
+          <rect x="34" y="282" width="140" height="10" rx="5" fill="#e4efe9"/>
+        </g>
+        <path d="M320 158 l0 -22 l12 12 l-6 0 l0 10 z" fill="#26735c" transform="translate(0,0)"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- 主内容：三栏门户 -->
+<div class="layout">
+
+  <!-- 左：频道索引 -->
+  <aside class="channel-col" aria-label="频道索引">
+    <h2>频道索引</h2>
+    <ul class="channel-list">
+      <li><a href="/#channel-mirror">镜像入口 <span class="num">18</span></a></li>
+      <li><a href="/#channel-backup">离线备份 <span class="num">7</span></a></li>
+      <li><a href="/#channel-sync">收藏同步 <span class="num">9</span></a></li>
+      <li><a href="/#channel-update">追更追踪 <span class="num">246</span></a></li>
+      <li><a href="/#channel-guide">切换指南 <span class="num">6</span></a></li>
+      <li><a href="/#channel-cat">分类入口 <span class="num">8</span></a></li>
+      <li><a href="/#channel-rank">热度榜单 <span class="num">10</span></a></li>
+      <li><a href="/#channel-tier">可信分层 <span class="num">3</span></a></li>
+      <li><a href="/#faq">常见问题 <span class="num">6</span></a></li>
+    </ul>
+    <div class="channel-tip">镜像线路每日复测，标注「已校验」的入口为 11 月 8 日实测可连通。</div>
+  </aside>
+
+  <!-- 中：主内容 -->
+  <main class="main-col">
+
+    <!-- 1 主题领域概览 -->
+    <section class="panel" id="overview" aria-labelledby="overview-title">
+      <div class="section-head">
+        <h2 id="overview-title"><span class="bar"></span>防走失关注的方向</h2>
+        <span class="sub">阅读约 1 分钟</span>
+      </div>
+      <div class="overview-body">
+        <p>漫画站点因为域名变更、备案调整或临时维护而暂时打不开时，读者最常遇到的两件事是「找不到入口」和「忘了追到第几话」。围绕这两个问题，长期追漫的读者通常会把注意力放在四类内容上：备用域名与镜像线路、离线备份包、收藏与阅读进度的同步方式、以及按作品记录的章节更新节奏。</p>
+        <p>备用域名分为主域名的并行线路和第三方镜像。并行线路通常与原站数据互通，登录后可继续阅读；第三方镜像多为只读镜像，只保留公开章节，评论与书架不会同步。离线备份包则把已下载章节打包成可本地打开的格式，适合断网或原站长期不可用时查看。</p>
+        <p>章节更新追踪关注的是具体作品的更新频率与停更状态。周刊漫画一般每周固定一天更新，月刊集中在月初或月末，部分作品因作者休载会出现数月空档。把更新日、最近一话标题和停更标记一起记录，比单纯收藏链接更能判断一部作品是否还值得继续跟。</p>
+        <div class="overview-facts">
+          <div class="fact"><strong>18 条</strong>本周复测可用的备用线路</div>
+          <div class="fact"><strong>7 类</strong>常见离线备份格式与存放位置</div>
+          <div class="fact"><strong>3 层</strong>入口可信度分级参考</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 精选内容推荐 -->
+    <section class="panel" id="channel-mirror" aria-labelledby="pick-title">
+      <div class="section-head">
+        <h2 id="pick-title"><span class="bar"></span>当前可用入口与备份条目</h2>
+        <span class="sub">11 月 8 日校验</span>
+      </div>
+      <div class="card-grid" id="pickGrid">
+
+        <article class="card">
+          <div class="card-thumb">
+            <img src="https://picsum.photos/seed/manwa-mirror08/400/300" width="400" height="300" loading="lazy" alt="漫蛙主域名并行线路入口示意封面">
+            <span class="card-badge">已校验</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">主域名并行线路 M1</h3>
+            <div class="tag-row"><span class="tag">镜像入口</span><span class="tag gold">数据互通</span><span class="tag">登录可用</span></div>
+            <p class="card-desc">与原站共用账号体系，书架与阅读进度直接同步，适合日常主用。11 月 8 日 09:30 复测连通，移动网络下偶有首屏延迟。</p>
+            <div class="card-meta"><span>更新 11-08</span><span class="hot">可用度 高</span></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-thumb">
+            <img src="https://picsum.photos/seed/manwa-mirror-b2/400/300" width="400" height="300" loading="lazy" alt="漫蛙只读镜像 B 线页面示意封面">
+            <span class="card-badge">只读</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">只读镜像 B 线</h3>
+            <div class="tag-row"><span class="tag">镜像入口</span><span class="tag">免登录</span><span class="tag">公开章节</span></div>
+            <p class="card-desc">不保存书架，只展示公开章节，适合临时确认某话是否存在。页面结构与原站不同，章节顺序按发布时间排列。</p>
+            <div class="card-meta"><span>更新 11-07</span><span class="hot">可用度 中</span></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-thumb">
+            <img src="https://picsum.photos/seed/manwa-backup-cbz/400/300" width="400" height="300" loading="lazy" alt="CBZ 离线备份包目录结构封面">
+            <span class="card-badge">本地</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">CBZ 离线备份包整理法</h3>
+            <div class="tag-row"><span class="tag">离线备份</span><span class="tag gold">断网可读</span><span class="tag">CBZ 格式</span></div>
+            <p class="card-desc">按「作品名_话数」命名并统一放进一个文件夹，用支持 CBZ 的阅读器打开即可离线翻页，适合长途出行前打包。</p>
+            <div class="card-meta"><span>更新 11-05</span><span class="hot">实用度 高</span></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-thumb">
+            <img src="https://picsum.photos/seed/manwa-sync09/400/300" width="400" height="300" loading="lazy" alt="收藏与阅读进度同步记录封面">
+            <span class="card-badge">同步</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">书架导出与进度手记</h3>
+            <div class="tag-row"><span class="tag">收藏同步</span><span class="tag">进度记录</span><span class="tag gold">跨设备</span></div>
+            <p class="card-desc">把书架列表导出为文本，同时手记每部作品最近一话编号，换设备或换域名后按记录重新定位，不依赖站内同步。</p>
+            <div class="card-meta"><span>更新 11-06</span><span class="hot">实用度 高</span></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-thumb">
+            <img src="https://picsum.photos/seed/manwa-weekly-track/400/300" width="400" height="300" loading="lazy" alt="周刊漫画追更日历封面">
+            <span class="card-badge">追更</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">周刊作品追更日历</h3>
+            <div class="tag-row"><span class="tag">追更追踪</span><span class="tag">周刊</span><span class="tag">更新日</span></div>
+            <p class="card-desc">把周刊作品按更新日排进一周七天，周一至周日各对应固定几部，避免每天反复刷入口确认有没有新话。</p>
+            <div class="card-meta"><span>更新 11-08</span><span class="hot">关注度 高</span></div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-thumb">
+            <img src="https://picsum.photos/seed/manwa-pause-flag/400/300" width="400" height="300" loading="lazy" alt="停更与休载标记方法封面">
+            <span class="card-badge">判别</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">停更与休载的识别标记</h3>
+            <div class="tag-row"><span class="tag">追更追踪</span><span class="tag">休载</span><span class="tag gold">判断依据</span></div>
+            <p class="card-desc">区分「作者休载」「平台下架」「域名失效」三种停更状态，各自对应的确认方式和恢复概率不同，处理方法也不同。</p>
+            <div class="card-meta"><span>更新 11-04</span><span class="hot">参考值 中</span></div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 3 最新更新 / 动态 -->
+    <section class="panel" id="channel-update" aria-labelledby="update-title">
+      <div class="section-head">
+        <h2 id="update-title"><span class="bar"></span>最新更新与线路动态</h2>
+        <span class="sub">截至 11 月 8 日</span>
+      </div>
+      <ul class="update-list">
+        <li>
+          <span class="update-time">11-08 09:30</span>
+          <div><span class="update-name">主域名并行线路 M1</span><span class="update-note">复测恢复连通，书架同步功能正常</span></div>
+          <span class="update-state">已校验</span>
+        </li>
+        <li>
+          <span class="update-time">11-08 08:10</span>
+          <div><span class="update-name">《深海邮差》第 41 话</span><span class="update-note">新话已上线，周刊更新日调整为每周六</span></div>
+          <span class="update-state">新章节</span>
+        </li>
+        <li>
+          <span class="update-time">11-07 21:40</span>
+          <div><span class="update-name">只读镜像 B 线</span><span class="update-note">公开章节索引重建完成，新增 3 部作品</span></div>
+          <span class="update-state">已校验</span>
+        </li>
+        <li>
+          <span class="update-time">11-07 15:20</span>
+          <div><span class="update-name">《雾港夜航》第 26 话</span><span class="update-note">作者公告休载一期，下话预计 11 月 21 日</span></div>
+          <span class="update-state warn">休载</span>
+        </li>
+        <li>
+          <span class="update-time">11-06 19:05</span>
+          <div><span class="update-name">备用线路 C3</span><span class="update-note">连续三次复测超时，已从可用列表移出</span></div>
+          <span class="update-state warn">下架</span>
+        </li>
+        <li>
+          <span class="update-time">11-06 11:00</span>
+          <div><span class="update-name">《纸上棋局》第 88 话</span><span class="update-note">连载完结，番外篇预计 12 月上线</span></div>
+          <span class="update-state">完结</span>
+        </li>
+        <li>
+          <span class="update-time">11-05 22:15</span>
+          <div><span class="update-name">书架导出工具说明</span><span class="update-note">补充 CSV 与纯文本两种导出格式的字段对照</span></div>
+          <span class="update-state">已更新</span>
+        </li>
+        <li>
+          <span class="update-time">11-05 10:30</span>
+          <div><span class="update-name">《银河修理铺》第 17 话</span><span class="update-note">新话上线，单行本第 3 卷同步开放预约</span></div>
+          <span class="update-state">新章节</span>
+        </li>
+        <li>
+          <span class="update-time">11-04 16:45</span>
+          <div><span class="update-name">镜像可信分层说明</span><span class="update-note">新增「数据是否互通」一项判定标准</span></div>
+          <span class="update-state">已更新</span>
+        </li>
+        <li>
+          <span class="update-time">11-03 20:00</span>
+          <div><span class="update-name">《纸上棋局》番外预告</span><span class="update-note">平台放出封面与 6 页试读，正篇已完结</span></div>
+          <span class="update-state">预告</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 4 分类入口 -->
+    <section class="panel" id="channel-cat" aria-labelledby="cat-title">
+      <div class="section-head">
+        <h2 id="cat-title"><span class="bar"></span>按类型找入口与作品</h2>
+        <span class="sub">8 个分类</span>
+      </div>
+      <div class="cat-grid">
+        <a class="cat-item" href="/#channel-rank"><span class="cat-name">悬疑推理</span><span class="cat-count">32 部在追</span></a>
+        <a class="cat-item" href="/#channel-rank"><span class="cat-name">都市日常</span><span class="cat-count">46 部在追</span></a>
+        <a class="cat-item" href="/#channel-rank"><span class="cat-name">奇幻冒险</span><span class="cat-count">29 部在追</span></a>
+        <a class="cat-item" href="/#channel-rank"><span class="cat-name">科幻机甲</span><span class="cat-count">18 部在追</span></a>
+        <a class="cat-item" href="/#channel-rank"><span class="cat-name">古风武侠</span><span class="cat-count">24 部在追</span></a>
+        <a class="cat-item" href="/#channel-rank"><span class="cat-name">校园青春</span><span class="cat-count">37 部在追</span></a>
+        <a class="cat-item" href="/#channel-rank"><span class="cat-name">美食治愈</span><span class="cat-count">21 部在追</span></a>
+        <a class="cat-item" href="/#channel-rank"><span class="cat-name">短篇合集</span><span class="cat-count">39 部在追</span></a>
+      </div>
+    </section>
+
+    <!-- 5 深度解析 -->
+    <section class="panel article" id="channel-guide" aria-labelledby="deep-title">
+      <div class="section-head">
+        <h2 id="deep-title"><span class="bar"></span>镜像入口、离线备份与追更追踪的实际差别</h2>
+        <span class="sub">深度解析</span>
+      </div>
+
+      <h3>并行线路与只读镜像的差别</h3>
+      <p>并行线路和只读镜像是两种不同的备用方式。并行线路与原站共用账号，登录后能看到自己的书架、阅读记录和评论；只读镜像通常由第三方抓取公开章节生成，不提供登录，也不保存个人数据。判断一个入口属于哪一类，最直接的方法是看有没有登录入口，以及登录后书架里的作品是否还存在。</p>
+      <p>并行线路的更新通常与原站同步，延迟一般在几分钟到几小时之间；只读镜像的滞后更明显，热门作品可能滞后一话，冷门作品可能数周不更新。如果某部作品在镜像上停在旧话，先不要判断它停更，多半只是镜像没抓到新内容。</p>
+
+      <h3>离线备份包适合哪些场景</h3>
+      <p>离线备份包适合三类场景：长途出行、网络不稳定、原站长期不可用。常见格式有三种，各自的取舍不同：</p>
+      <ul>
+        <li><strong>CBZ / CBR</strong>：本质是打包的图片集，几乎所有漫画阅读器都能打开，兼容性最好。</li>
+        <li><strong>PDF 合集</strong>：适合在电脑或平板上直接阅读，但单文件体积大，翻页体验不如图片包。</li>
+        <li><strong>图片文件夹</strong>：按话数分文件夹存放，最灵活，可以自由替换个别页面，但需要自己维护目录结构。</li>
+      </ul>
+      <p>打包时建议统一命名规则，例如「作品名_第 041 话」，并在文件夹内放一份说明文本，记录打包日期和对应的入口线路。这样在原站恢复后，能快速比对哪些话已经读过。</p>
+
+      <h3>章节更新节奏的判断方法</h3>
+      <p>不同连载形式的更新节奏差异很大。周刊作品一般每周固定一天更新，遇到合刊会顺延；月刊集中在月初或月末；不定期连载则只能靠作者公告。判断一部作品是否还在更新，可以同时看三个信号：</p>
+      <ol>
+        <li>最近一话的发布时间是否超过该作品常规更新周期的两倍；</li>
+        <li>作品页有没有作者休载公告或平台下架提示；</li>
+        <li>并行线路与只读镜像是否都不再出现新话。</li>
+      </ol>
+      <p>三个信号同时成立时，基本可以判断作品进入停更或休载状态。只满足其中一条，多数情况下只是镜像滞后或线路问题，不具备判断价值。</p>
+
+      <h3>收藏同步的三个层次</h3>
+      <p>收藏同步可以分成站内同步、手动导出和手记记录三个层次。站内同步依赖账号，换域名后如果账号体系不变，书架会自动恢复；手动导出把书架列表导出为文本或表格，换设备后按列表重新收藏；手记记录则只记作品名和最近一话编号，最轻量，也最不依赖平台。</p>
+      <p>三层同时使用的读者，通常在域名切换时损失最小。只依赖站内同步的读者，一旦账号体系变更或镜像不互通，书架就会归零。</p>
+
+      <h3>入口可信度的判定维度</h3>
+      <p>判断一个备用入口是否值得长期使用，可以从四个维度看：是否要求异常权限、页面广告密度是否明显高于原站、是否提供登录、以及域名信息是否可查。要求安装额外应用或索取账号密码的入口，无论页面多像原站，都应先排除。</p>
+      <div class="compare">
+        <div>
+          <h4>优先使用</h4>
+          <ul>
+            <li>有登录、书架可恢复</li>
+            <li>广告密度与原站接近</li>
+            <li>域名信息可查、有备案记录</li>
+            <li>章节更新延迟在一天以内</li>
+          </ul>
+        </div>
+        <div>
+          <h4>谨慎对待</h4>
+          <ul>
+            <li>要求安装不明应用</li>
+            <li>索取账号密码或验证码</li>
+            <li>弹窗广告明显多于原站</li>
+            <li>章节标题与内容明显错位</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 体验指南 -->
+    <section class="panel" id="channel-backup" aria-labelledby="guide-title">
+      <div class="section-head">
+        <h2 id="guide-title"><span class="bar"></span>从主站失效到恢复追更的路径</h2>
+        <span class="sub">消费路径</span>
+      </div>
+      <ol class="steps">
+        <li>
+          <div>
+            <h4>先确认是站点问题还是本地网络问题</h4>
+            <p>切换移动网络与 Wi-Fi 各试一次，再用其他设备打开同一入口。两种网络都不通，才按站点不可用处理。</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h4>按可信度从高到低尝试备用入口</h4>
+            <p>先试有登录、书架可恢复的并行线路，再试只读镜像。只读镜像不需要登录，适合快速确认某话是否存在。</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h4>用最近一话编号定位进度</h4>
+            <p>打开书架导出记录或手记，找到每部作品最近一话的编号，进入新入口后直接跳到对应话数，不用从头翻。</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h4>判断作品是否真的停更</h4>
+            <p>对照更新周期、作者公告和多个入口的章节列表。只有一个入口停在旧话时，先按镜像滞后处理，隔几天再看。</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h4>为长期追更的作品补一份离线备份</h4>
+            <p>把已读章节按话数打包，命名统一，放在固定文件夹。原站恢复后不必重新下载，也能在断网时继续翻看。</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- 7 FAQ -->
+    <section class="panel" id="faq" aria-labelledby="faq-title">
+      <div class="section-head">
+        <h2 id="faq-title"><span class="bar"></span>常见问题</h2>
+        <span class="sub">6 个问题</span>
+      </div>
+
+      <details class="faq">
+        <summary>周刊漫画一般多久更新一次？</summary>
+        <div class="faq-body">周刊作品通常每周固定一天更新一话，遇到杂志合刊会顺延一周，节假日也可能调整。判断某部周刊是否正常更新，看最近一话与上一话的间隔是否超过 14 天即可。</div>
+      </details>
+
+      <details class="faq">
+        <summary>只读镜像和并行线路有什么区别？</summary>
+        <div class="faq-body">并行线路与原站共用账号，登录后书架、阅读进度、评论都在；只读镜像不提供登录，只展示公开章节，个人数据不保留。追更建议以并行线路为主，只读镜像用于临时确认章节。</div>
+      </details>
+
+      <details class="faq">
+        <summary>第一次接触这类作品，从哪一部开始看比较好？</summary>
+        <div class="faq-body">如果偏好节奏紧凑，可以先看悬疑推理类的《纸上棋局》，已完结，共 88 话；如果偏好轻松日常，从《银河修理铺》前 17 话入手，单元结构明显，随时可以停下。</div>
+      </details>
+
+      <details class="faq">
+        <summary>离线备份用 CBZ 还是 PDF 更好？</summary>
+        <div class="faq-body">手机和平板上用 CBZ 更合适，几乎所有漫画阅读器都支持，翻页流畅；如果主要在电脑上阅读、希望单文件归档，PDF 更方便。两种格式可以同时保留，体积允许的话不必二选一。</div>
+      </details>
+
+      <details class="faq">
+        <summary>作品显示休载，多久会恢复？</summary>
+        <div class="faq-body">休载没有固定时长。作者健康原因通常休 1 到 3 个月，剧情调整可能更久，平台下架则不确定。可以关注作者公告和作品页更新提示，两者都没有消息时，按长期停更处理更稳妥。</div>
+      </details>
+
+      <details class="faq">
+        <summary>换域名后书架还能恢复吗？</summary>
+        <div class="faq-body">取决于新入口是否与原站共用账号体系。共用账号的并行线路登录后书架会自动恢复；只读镜像或独立账号体系不保留书架。提前导出书架列表并手记最近一话编号，是最稳的保底方式。</div>
+      </details>
+    </section>
+
+    <!-- 8 用户评论 -->
+    <section class="panel" id="comments" aria-labelledby="comment-title">
+      <div class="section-head">
+        <h2 id="comment-title"><span class="bar"></span>读者讨论</h2>
+        <span class="sub">16 条</span>
+      </div>
+      <div class="comment-grid">
+
+        <div class="comment">
+          <div class="comment-head"><span class="avatar" style="background:#26735c">阿</span><span class="comment-name">阿澈</span><span class="comment-time">11-08 10:12</span></div>
+          <p class="comment-text">《深海邮差》改成周六更新后我总记错，现在把更新日写进日历提醒，周六上午直接看新话。</p>
+        </div>
+
+        <div class="comment">
+          <div class="comment-head"><span class="avatar" style="background:#b4472f">夜</span><span class="comment-name">夜航船</span><span class="comment-time">11-08 09:40</span></div>
+          <p class="comment-text">只读镜像 B 线确实滞后，《雾港夜航》第 26 话在那边一直没出现，后来去并行线路才看到作者休载公告。</p>
+        </div>
+
+        <div class="comment">
+          <div class="comment-head"><span class="avatar" style="background:#7a5c0d">纸</span><span class="comment-name">纸上谈</span><span class="comment-time">11-07 22:18</span></div>
+          <p class="comment-text">《纸上棋局》完结有点舍不得，88 话收得还算稳，番外预告已经放出来了，等 12 月。</p>
+        </div>
+
+        <div class="comment">
+          <div class="comment-head"><span class="avatar" style="background:#1d5c4a">小</span><span class="comment-name">小满</span><span class="comment-time">11-07 20:05</span></div>
+          <p class="comment-text">CBZ 备份是真的香，上周出差在高铁上把《银河修理铺》前 17 话全看完了，一点不依赖网络。</p>
+        </div>
+
+        <div class="comment">
+          <div class="comment-head"><span class="avatar" style="background:#26735c">木</span><span class="comment-name">木木不困</span><span class="comment-time">11-07 16:33</span></div>
+          <p class="comment-text">书架导出成文本后我一共列了 63 部，密密麻麻，但换设备时确实省事，直接按列表重新收藏。</p>
+        </div>
+
+        <div class="comment">
+          <div class="comment-head"><span class="avatar" style="background:#b4472f">冬</span><span class="comment-name">冬日便当</span><span class="comment-time">11-07 11:27</span></div>
+          <p class="comment-text">美食治愈类里《冬日便当屋》更新很稳，每周三一话，节奏慢但看着舒服，适合睡前。</p>
+        </div>
+
+        <div class="comment">
+          <div class="comment-head"><span class="avatar" style="background:#1d5c4a">星</span><span class="comment-name">星野拾光</span><span class="comment-time">11-06 21:50</span></div>
+          <p class="comment-text">备用线路 C3 下架那天我正好在找它，后来换 M1 就正常了，看来还是得准备两三个入口。</p>
+        </div>
+
+        <div class="comment">
+          <div class="comment-head"><span class="avatar" style="background:#7a5c0d">青</span><span class="comment-name">青柠汽水</span><span class="comment-time">11-06 18:14</span></div>
+          <p class="comment-text">求问《纸上棋局》番外是单独连载还是收进单行本？看到预告只有 6 页试读，信息太少。</p>
+        </div>
+
+        <div class="comment">
+          <div class="comment-head"><span class="avatar" style="background:#26735c">九</span><span class="comment-name">九号站台</span><span class="comment-time">11-06 14:02</span></div>
+          <p class="comment-text">悬疑推理类里《雨夜投递》也不错，更新慢一点但每话信息量足，喜欢《纸上棋局》的可以试试。</p>
+        </div>
+
+        <div class="comment">
+          <div class="comment-head"><span class="avatar" style="background:#b4472f">海</span><span class="comment-name">海盐苏打</span><span class="comment-time">11-05 23:39</span></div>
+          <p class="comment-text">PDF 合集我也试过，单文件两三百兆，电脑上翻页还行，手机上确实不如 CBZ 顺手。</p>
+        </div>
+
+        <div class="comment">
+          <div class="comment-head"><span class="avatar" style="background:#1d5c4a">慢</span><span class="comment-name">慢半拍</span><span class="comment-time">11-05 19:21</span></div>
+          <p class="comment-text">我是只记作品名和话数的那种，手写在本子上，虽然麻烦但从来没丢过进度。</p>
+        </div>
+
+        <div class="comment">
+          <div class="comment-head"><span class="avatar" style="background:#7a5c0d">橘</span><span class="comment-name">橘子海</span><span class="comment-time">11-05 15:08</span></div>
+          <p class="comment-text">《银河修理铺》单行本第 3 卷预约开了，但我想等电子版，纸质版收纳太占地方。</p>
+        </div>
+
+        <div class="comment">
+          <div class="comment-head"><span class="avatar" style="background:#26735c">雾</span><span class="comment-name">雾都观测</span><span class="comment-time">11-04 20:47</span></div>
+          <p class="comment-text">《雾港夜航》休载一期可以理解，作者上一话后记提到身体不太舒服，希望能好好休息。</p>
+        </div>
+
+        <div class="comment">
+          <div class="comment-head"><span class="avatar" style="background:#b4472f">山</span><span class="comment-name">山谷回声</span><span class="comment-time">11-04 13:26</span></div>
+          <p class="comment-text">科幻机甲类最近新开的《轨道之外》设定挺硬，前三话节奏偏慢，第四话才开始好看。</p>
+        </div>
+
+        <div class="comment">
+          <div class="comment-head"><span class="avatar" style="background:#1d5c4a">白</span><span class="comment-name">白露未霜</span><span class="comment-time">11-03 22:11</span></div>
+          <p class="comment-text">古风武侠里《青崖录》的画风很稳，就是月刊等得久，每次都要翻一下上次看到哪。</p>
+        </div>
+
+        <div class="comment">
+          <div class="comment-head"><span class="avatar" style="background:#7a5c0d">布</span><span class="comment-name">布丁不甜</span><span class="comment-time">11-03 17:55</span></div>
+          <p class="comment-text">校园青春类《午后三点的信》更新到第 52 话，最近剧情有点拖，先养一养再看。</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 9 相关资讯 -->
+    <section class="panel" id="news" aria-labelledby="news-title">
+      <div class="section-head">
+        <h2 id="news-title"><span class="bar"></span>相关资讯</h2>
+        <span class="sub">11 月 8 日前</span>
+      </div>
+      <div class="news-list">
+
+        <article class="news-item">
+          <img src="https://picsum.photos/seed/manwa-news-mirror/600/400" width="600" height="400" loading="lazy" alt="镜像入口复测与线路调整资讯配图">
+          <div>
+            <div class="news-date">2026-11-08</div>
+            <h3 class="news-title">4 个镜像入口完成复测，C3 线路移出可用列表</h3>
+            <p class="news-sum">11 月 8 日复测中，M1、B 线等 4 个入口连通正常，C3 连续三次超时被移出，备用线路总数由 19 调整为 18。</p>
+          </div>
+        </article>
+
+        <article class="news-item">
+          <img src="https://picsum.photos/seed/manwa-news-shenhai/600/400" width="600" height="400" loading="lazy" alt="深海邮差第 41 话更新资讯配图">
+          <div>
+            <div class="news-date">2026-11-08</div>
+            <h3 class="news-title">《深海邮差》更新日调整为每周六</h3>
+            <p class="news-sum">第 41 话上线同时，作品页更新日由周五改为周六，追更读者需相应调整提醒时间。</p>
+          </div>
+        </article>
+
+        <article class="news-item">
+          <img src="https://picsum.photos/seed/manwa-news-zhishang/600/400" width="600" height="400" loading="lazy" alt="纸上棋局完结与番外预告资讯配图">
+          <div>
+            <div class="news-date">2026-11-06</div>
+            <h3 class="news-title">《纸上棋局》第 88 话完结，番外篇 12 月上线</h3>
+            <p class="news-sum">正篇以第 88 话收束，平台同步放出番外篇封面与 6 页试读，单行本最终卷预约开启。</p>
+          </div>
+        </article>
+
+        <article class="news-item">
+          <img src="https://picsum.photos/seed/manwa-news-wugang/600/400" width="600" height="400" loading="lazy" alt="雾港夜航休载公告资讯配图">
+          <div>
+            <div class="news-date">2026-11-07</div>
+            <h3 class="news-title">《雾港夜航》作者公告休载，第 27 话延至 11 月 21 日</h3>
+            <p class="news-sum">第 26 话后附作者公告，因身体原因休载一期，恢复时间定在 11 月 21 日。</p>
+          </div>
+        </article>
+
+        <article class="news-item">
+          <img src="https://picsum.photos/seed/manwa-news-backup/600/400" width="600" height="400" loading="lazy" alt="书架导出格式字段说明资讯配图">
+          <div>
+            <div class="news-date">2026-11-05</div>
+            <h3 class="news-title">书架导出新增 CSV 与纯文本字段对照</h3>
+            <p class="news-sum">导出说明补充两种格式的字段差异，CSV 含收藏时间与最近一话，纯文本仅保留作品名与话数。</p>
+          </div>
+        </article>
+
+        <article class="news-item">
+          <img src="https://picsum.photos/seed/manwa-news-yinhe/600/400" width="600" height="400" loading="lazy" alt="银河修理铺单行本预约资讯配图">
+          <div>
+            <div class="news-date">2026-11-05</div>
+            <h3 class="news-title">《银河修理铺》第 17 话上线，单行本第 3 卷开放预约</h3>
+            <p class="news-sum">新话继续单元结构，第 3 卷收录第 13 至 18 话，预计 12 月中旬发货。</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 10 相关推荐 -->
+    <section class="panel" id="recommend" aria-labelledby="rec-title">
+      <div class="section-head">
+        <h2 id="rec-title"><span class="bar"></span>延伸方向与相关条目</h2>
+        <span class="sub">按方向索引</span>
+      </div>
+      <div class="rec-cloud">
+        <a href="/#channel-backup">CBZ 打包规范</a>
+        <a href="/#channel-sync" class="hot-tag">书架导出 CSV 字段</a>
+        <a href="/#channel-update">周刊更新日排期</a>
+        <a href="/#channel-tier">入口可信度判定</a>
+        <a href="/#faq">休载与下架区分</a>
+        <a href="/#channel-rank">悬疑推理在追榜</a>
+        <a href="/#news">镜像复测记录</a>
+        <a href="/#channel-cat">短篇合集入口</a>
+      </div>
+    </section>
+
+    <!-- 11 补充：热门榜单 -->
+    <section class="panel" id="channel-rank" aria-labelledby="rank-title">
+      <div class="section-head">
+        <h2 id="rank-title"><span class="bar"></span>在追热度榜（11 月 8 日）</h2>
+        <span class="sub">按追更人数排序</span>
+      </div>
+      <ol class="rank-list">
+        <li><span class="rank-name">深海邮差<small>周刊 · 悬疑推理 · 第 41 话</small></span><span class="rank-score">98.2</span></li>
+        <li><span class="rank-name">银河修理铺<small>双周 · 科幻日常 · 第 17 话</small></span><span class="rank-score">96.5</span></li>
+        <li><span class="rank-name">纸上棋局<small>完结 · 悬疑推理 · 全 88 话</small></span><span class="rank-score">95.1</span></li>
+        <li><span class="rank-name">雾港夜航<small>周刊 · 都市悬疑 · 第 26 话</small></span><span class="rank-score">93.7</span></li>
+        <li><span class="rank-name">青崖录<small>月刊 · 古风武侠 · 第 34 话</small></span><span class="rank-score">91.4</span></li>
+        <li><span class="rank-name">轨道之外<small>周刊 · 科幻机甲 · 第 9 话</small></span><span class="rank-score">89.8</span></li>
+        <li><span class="rank-name">雨夜投递<small>双周 · 悬疑推理 · 第 22 话</small></span><span class="rank-score">88.3</span></li>
+        <li><span class="rank-name">午后三点的信<small>周刊 · 校园青春 · 第 52 话</small></span><span class="rank-score">86.9</span></li>
+        <li><span class="rank-name">冬日便当屋<small>周刊 · 美食治愈 · 第 63 话</small></span><span class="rank-score">85.2</span></li>
+        <li><span class="rank-name">纸鸢与刀<small>月刊 · 古风武侠 · 第 19 话</small></span><span class="rank-score">83.6</span></li>
+      </ol>
+    </section>
+
+    <!-- 12 补充：可信度分层 -->
+    <section class="panel" id="channel-tier" aria-labelledby="tier-title">
+      <div class="section-head">
+        <h2 id="tier-title"><span class="bar"></span>入口可信度分层</h2>
+        <span class="sub">3 层</span>
+      </div>
+      <ul class="tier-list">
+        <li class="tier">
+          <span class="tier-badge tier-a">A 优先</span>
+          <div>
+            <h4>共用账号的并行线路</h4>
+            <p>有登录、书架可恢复、域名信息可查。例如 M1 线路，11 月 8 日复测正常，适合作为长期主用入口。</p>
+          </div>
+        </li>
+        <li class="tier">
+          <span class="tier-badge tier-b">B 备用</span>
+          <div>
+            <h4>只读镜像与免登录线路</h4>
+            <p>不保存个人数据，只展示公开章节。例如 B 线，适合临时确认某话是否存在，不建议作为唯一入口。</p>
+          </div>
+        </li>
+        <li class="tier">
+          <span class="tier-badge tier-c">C 排除</span>
+          <div>
+            <h4>要求安装应用或索取密码</h4>
+            <p>无论页面多接近原站，只要索取账号密码、验证码或要求安装不明应用，都应先排除，不做任何登录尝试。</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <div class="no-result" id="noResult" role="status" aria-live="polite"></div>
+
+  </main>
+
+  <!-- 右：辅助栏 -->
+  <aside class="side-col" aria-label="辅助信息">
+
+    <div class="side-panel">
+      <h2><span class="bar"></span>入口速查</h2>
+      <ul class="side-list">
+        <li><a href="/#channel-mirror">主域名并行线路 M1</a><div class="meta">11-08 09:30 校验 · 书架可恢复</div></li>
+        <li><a href="/#channel-mirror">只读镜像 B 线</a><div class="meta">11-07 21:40 校验 · 免登录</div></li>
+        <li><a href="/#channel-guide">备用线路选择顺序</a><div class="meta">按可信度从高到低</div></li>
+        <li><a href="/#channel-backup">CBZ 备份打包方法</a><div class="meta">断网可读 · 命名统一</div></li>
+        <li><a href="/#channel-sync">书架导出与进度手记</a><div class="meta">跨设备恢复保底</div></li>
+      </ul>
+    </div>
+
+    <div class="side-panel">
+      <h2><span class="bar"></span>今日追更提醒</h2>
+      <ul class="side-list">
+        <li>《深海邮差》第 41 话<div class="meta">周六更新 · 已上线</div></li>
+        <li>《冬日便当屋》第 63 话<div class="meta">周三更新 · 待上线</div></li>
+        <li>《雾港夜航》第 27 话<div class="meta">休载 · 预计 11-21</div></li>
+        <li>《轨道之外》第 9 话<div class="meta">周四更新 · 已上线</div></li>
+      </ul>
+    </div>
+
+    <div class="side-cta">
+      <h2>先记进度再换入口</h2>
+      <p>换任何备用入口前，先把书架列表和每部作品最近一话编号记下来，恢复时不用从头翻找。</p>
+      <a class="btn" href="/#channel-sync">查看同步方法</a>
+    </div>
+
+    <div class="side-panel">
+      <h2><span class="bar"></span>关于入口校验</h2>
+      <p class="side-note">标注「已校验」的线路均在 11 月 8 日当天实测过连通性与书架恢复情况；未标注的为历史记录，可能已失效。</p>
+    </div>
+
+  </aside>
+
+</div>
+
+<!-- 页尾 -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="14" fill="#f2c14e"/>
+            <path d="M17 41c0-11 6.5-19 15-19s15 8 15 19" fill="none" stroke="#123b30" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="24" cy="45" r="4" fill="#123b30"/>
+            <circle cx="40" cy="45" r="4" fill="#123b30"/>
+          </svg>
+          <span class="brand-text">漫蛙防走失页面</span>
+        </div>
+        <p class="footer-desc">聚合漫画站点的备用入口、镜像域名、离线备份包与章节更新追踪，帮助长期追漫的读者在入口失效时快速恢复阅读进度。</p>
+      </div>
+      <div class="footer-col">
+        <h4>入口与备份</h4>
+        <ul>
+          <li><a href="/#channel-mirror">镜像入口</a></li>
+          <li><a href="/#channel-backup">离线备份</a></li>
+          <li><a href="/#channel-sync">收藏同步</a></li>
+          <li><a href="/#channel-tier">可信分层</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>追更与参考</h4>
+        <ul>
+          <li><a href="/#channel-update">追更追踪</a></li>
+          <li><a href="/#channel-guide">切换指南</a></li>
+          <li><a href="/#channel-rank">热度榜单</a></li>
+          <li><a href="/#faq">常见问题</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 漫蛙防走失页面 · 内容整理与入口记录</span>
+      <span class="disclaimer">部分内容为示例数据，仅用于展示页面结构</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var input = document.getElementById('siteSearch');
+  var btn = document.getElementById('searchBtn');
+  var noResult = document.getElementById('noResult');
+  var main = document.querySelector('.main-col');
+
+  function clearHighlight(){
+    main.querySelectorAll('.search-hit').forEach(function(el){
+      el.classList.remove('search-hit');
+      el.style.outline = '';
+      el.style.background = '';
+    });
+  }
+
+  function runSearch(){
+    var q = (input.value || '').trim();
+    clearHighlight();
+    noResult.classList.remove('show');
+    noResult.textContent = '';
+    if(!q){ return; }
+
+    var targets = main.querySelectorAll(
+      '.card, .update-list li, .cat-item, .steps li, details.faq, .comment, .news-item, .rank-list li, .tier, .rec-cloud a, .article h3, .article p, .overview-body p'
+    );
+    var hits = [];
+    var lower = q.toLowerCase();
+    targets.forEach(function(el){
+      if(el.textContent.toLowerCase().indexOf(lower) !== -1){
+        hits.push(el);
+      }
+    });
+
+    if(hits.length === 0){
+      noResult.classList.add('show');
+      noResult.textContent = '没有找到与「' + q + '」相关的内容，可尝试作品名、分类词或入口名称。';
+      return;
+    }
+
+    hits.forEach(function(el){
+      el.style.outline = '3px solid #f2c14e';
+      el.style.outlineOffset = '2px';
+      el.style.borderRadius = '8px';
+      el.classList.add('search-hit');
+    });
+    hits[0].scrollIntoView({behavior:'smooth', block:'center'});
+    noResult.classList.add('show');
+    noResult.textContent = '找到 ' + hits.length + ' 条与「' + q + '」相关的内容，已定位到第一条。';
+  }
+
+  btn.addEventListener('click', runSearch);
+  input.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); runSearch(); }
+  });
+  input.addEventListener('input', function(){
+    if(input.value.trim() === ''){ clearHighlight(); noResult.classList.remove('show'); }
+  });
+})();
+</script>
+</body>
+  </html>
