@@ -1,0 +1,1061 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱情岛 - 情感交流与伴侣匹配指南</title>
+  <meta name="description" content="爱情岛是情感交流与伴侣匹配的聚合页。这里提供情感话题讨论、恋爱技巧攻略、伴侣匹配测试、真实案例解析及社区互动内容，适合正在探索亲密关系或希望提升情感认知的读者浏览参考。">
+  <meta name="keywords" content="情感交流社区,恋爱技巧攻略,伴侣匹配测试,亲密关系案例,情感话题讨论">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23f06292'/%3E%3Cpath d='M16 24c-4-4-8-7.5-8-11.5 0-3 2.5-5.5 5.5-5.5 1.5 0 3 1 4.5 2.5 1.5-1.5 3-2.5 4.5-2.5 3 0 5.5 2.5 5.5 5.5 0 4-4 7.5-8 11.5z' fill='%23fff'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --color-primary: #d81b60;
+      --color-primary-dark: #ad1457;
+      --color-primary-light: #fce4ec;
+      --color-secondary: #ff6f00;
+      --color-bg: #fef7f8;
+      --color-surface: #ffffff;
+      --color-text: #2c1b1e;
+      --color-text-secondary: #6b4c52;
+      --color-border: #f0d5da;
+      --color-muted: #f9eef0;
+      --font-heading: 'Noto Serif SC', 'Songti SC', serif;
+      --font-body: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 1px 3px rgba(100, 30, 50, 0.06);
+      --shadow-md: 0 4px 16px rgba(100, 30, 50, 0.08);
+      --sticky-offset: 92px;
+      --max-width: 1360px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: var(--sticky-offset); }
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--color-primary-dark); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; height: auto; display: block; }
+    ul, ol { padding-left: 1.4em; }
+
+    /* 吸顶公告条 + 页头 */
+    .sticky-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--color-surface);
+      box-shadow: 0 2px 10px rgba(100, 30, 50, 0.06);
+    }
+    .announcement-bar {
+      background: var(--color-primary-dark);
+      color: #fff;
+      font-size: 0.875rem;
+      padding: 6px 1rem;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+    .announcement-bar strong { font-weight: 600; }
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.6rem 1.5rem;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      white-space: nowrap;
+    }
+    .brand svg { width: 34px; height: 34px; flex-shrink: 0; }
+    .header-nav {
+      display: flex;
+      gap: 0.5rem 1.2rem;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+    }
+    .header-nav a {
+      color: var(--color-text-secondary);
+      font-weight: 500;
+      padding: 0.3rem 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .header-nav a:hover { color: var(--color-primary); border-bottom-color: var(--color-primary); text-decoration: none; }
+    .header-actions { display: flex; gap: 0.6rem; align-items: center; }
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: var(--color-muted);
+      border-radius: 40px;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid var(--color-border);
+    }
+    .search-box input {
+      border: none;
+      background: transparent;
+      padding: 0.35rem 0.5rem;
+      font-size: 0.85rem;
+      width: 140px;
+      outline: none;
+      font-family: var(--font-body);
+    }
+    .search-box button {
+      background: var(--color-primary);
+      color: #fff;
+      border: none;
+      border-radius: 40px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    /* 主容器 */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.5rem 1.5rem 3rem;
+    }
+
+    /* 首屏 */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      background: linear-gradient(135deg, #fff5f7 0%, #fce4ec 100%);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .hero-content h1 {
+      font-family: var(--font-heading);
+      font-size: 2.8rem;
+      line-height: 1.2;
+      color: var(--color-primary-dark);
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.5px;
+    }
+    .hero-content .hero-sub {
+      font-size: 1.1rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 1.5rem;
+      max-width: 480px;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      background: var(--color-primary);
+      color: #fff;
+      padding: 0.65rem 1.6rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn:hover { background: var(--color-primary-dark); text-decoration: none; }
+    .btn-outline {
+      background: transparent;
+      color: var(--color-primary-dark);
+      border: 2px solid var(--color-primary);
+    }
+    .btn-outline:hover { background: var(--color-primary-light); }
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* 三栏布局 */
+    .portal-layout {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr) 260px;
+      gap: 1.8rem;
+      align-items: start;
+    }
+
+    /* 左侧频道索引 */
+    .channel-sidebar {
+      position: sticky;
+      top: calc(var(--sticky-offset) + 12px);
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      padding: 1rem 0.8rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-border);
+    }
+    .channel-sidebar h3 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--color-text-secondary);
+      margin-bottom: 0.8rem;
+      padding-left: 0.4rem;
+      font-weight: 600;
+    }
+    .channel-sidebar ul { list-style: none; padding: 0; }
+    .channel-sidebar li { margin-bottom: 0.15rem; }
+    .channel-sidebar a {
+      display: block;
+      padding: 0.45rem 0.6rem;
+      border-radius: var(--radius-sm);
+      color: var(--color-text);
+      font-size: 0.92rem;
+      transition: background 0.15s, color 0.15s;
+    }
+    .channel-sidebar a:hover {
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+      text-decoration: none;
+    }
+
+    /* 主内容区 */
+    .main-column { min-width: 0; }
+    .content-section {
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      padding: 1.6rem 1.4rem;
+      margin-bottom: 1.6rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-border);
+    }
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-title::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 1.4rem;
+      background: var(--color-primary);
+      border-radius: 4px;
+    }
+    .section-desc {
+      color: var(--color-text-secondary);
+      font-size: 0.92rem;
+      margin-bottom: 1.2rem;
+    }
+
+    /* 卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.2rem;
+    }
+    .card {
+      background: var(--color-muted);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .card img { width: 100%; height: 150px; object-fit: cover; }
+    .card-body { padding: 0.9rem 1rem 1rem; flex: 1; display: flex; flex-direction: column; }
+    .card-tag {
+      display: inline-block;
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.15rem 0.6rem;
+      border-radius: 40px;
+      margin-bottom: 0.5rem;
+      align-self: flex-start;
+    }
+    .card h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      line-height: 1.35;
+    }
+    .card p {
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+      margin-bottom: 0.6rem;
+      flex: 1;
+    }
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--color-text-secondary);
+      border-top: 1px solid var(--color-border);
+      padding-top: 0.5rem;
+      margin-top: auto;
+    }
+
+    /* 紧凑列表 */
+    .compact-list { list-style: none; padding: 0; }
+    .compact-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--color-border);
+      gap: 1rem;
+      font-size: 0.92rem;
+    }
+    .compact-list li:last-child { border-bottom: none; }
+    .compact-list .list-title { font-weight: 600; }
+    .compact-list .list-meta { font-size: 0.78rem; color: var(--color-text-secondary); white-space: nowrap; }
+
+    /* 分类入口网格 */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.8rem;
+    }
+    .category-item {
+      background: var(--color-muted);
+      border-radius: var(--radius-sm);
+      padding: 0.9rem 0.8rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.92rem;
+      border: 1px solid var(--color-border);
+      transition: background 0.2s;
+    }
+    .category-item:hover { background: var(--color-primary-light); text-decoration: none; }
+
+    /* 深度解析 */
+    .deep-dive h3 {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      margin: 1.2rem 0 0.5rem;
+      color: var(--color-primary-dark);
+    }
+    .deep-dive p { margin-bottom: 0.8rem; font-size: 0.95rem; }
+    .deep-dive ul { margin: 0.5rem 0 1rem 1.2rem; font-size: 0.92rem; }
+    .deep-dive li { margin-bottom: 0.3rem; }
+
+    /* FAQ */
+    .faq-item {
+      border-bottom: 1px solid var(--color-border);
+      padding: 0.7rem 0;
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item summary {
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      padding: 0.3rem 0;
+      color: var(--color-primary-dark);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: '+'; font-size: 1.2rem; color: var(--color-primary); }
+    .faq-item[open] summary::after { content: '−'; }
+    .faq-item p {
+      padding: 0.6rem 0 0.2rem;
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    /* 评论 */
+    .comment-list { display: flex; flex-direction: column; gap: 0.9rem; }
+    .comment-item {
+      display: flex;
+      gap: 0.8rem;
+      background: var(--color-muted);
+      border-radius: var(--radius-sm);
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--color-border);
+    }
+    .comment-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--color-primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .comment-body { flex: 1; min-width: 0; }
+    .comment-name { font-weight: 600; font-size: 0.85rem; color: var(--color-primary-dark); }
+    .comment-text { font-size: 0.88rem; color: var(--color-text-secondary); margin-top: 0.1rem; }
+    .comment-time { font-size: 0.72rem; color: #b08a93; margin-top: 0.2rem; }
+
+    /* 资讯 */
+    .news-item {
+      display: flex;
+      gap: 1rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--color-border);
+      align-items: flex-start;
+    }
+    .news-item:last-child { border-bottom: none; }
+    .news-date {
+      font-size: 0.78rem;
+      color: var(--color-text-secondary);
+      white-space: nowrap;
+      min-width: 70px;
+    }
+    .news-content h4 { font-size: 0.95rem; margin-bottom: 0.15rem; }
+    .news-content p { font-size: 0.82rem; color: var(--color-text-secondary); }
+
+    /* 右侧辅助栏 */
+    .aux-sidebar {
+      position: sticky;
+      top: calc(var(--sticky-offset) + 12px);
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .aux-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      padding: 1.2rem 1rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-border);
+    }
+    .aux-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--color-primary-light);
+    }
+    .aux-card ul { list-style: none; padding: 0; }
+    .aux-card li {
+      padding: 0.4rem 0;
+      font-size: 0.88rem;
+      border-bottom: 1px dashed var(--color-border);
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+    .aux-card li:last-child { border-bottom: none; }
+    .aux-card .rank-num {
+      display: inline-block;
+      width: 1.2rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      font-size: 0.8rem;
+    }
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag-cloud a {
+      background: var(--color-muted);
+      border: 1px solid var(--color-border);
+      padding: 0.2rem 0.7rem;
+      border-radius: 40px;
+      font-size: 0.78rem;
+      color: var(--color-text-secondary);
+      transition: background 0.15s;
+    }
+    .tag-cloud a:hover { background: var(--color-primary-light); text-decoration: none; }
+
+    /* 页尾 */
+    .site-footer {
+      background: #2c1b1e;
+      color: #e0cdd2;
+      padding: 2.5rem 1.5rem 1.5rem;
+      margin-top: 2rem;
+    }
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 2rem;
+    }
+    .footer-brand h3 {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.6; color: #bca3a9; }
+    .footer-col h4 {
+      font-size: 0.9rem;
+      color: #fff;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+    .footer-col ul { list-style: none; padding: 0; }
+    .footer-col li { margin-bottom: 0.4rem; font-size: 0.82rem; }
+    .footer-col a { color: #bca3a9; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom {
+      max-width: var(--max-width);
+      margin: 1.5rem auto 0;
+      padding-top: 1.2rem;
+      border-top: 1px solid #4a3238;
+      font-size: 0.75rem;
+      color: #8f737a;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    /* 搜索无结果提示 */
+    .search-feedback {
+      display: none;
+      padding: 1rem;
+      background: var(--color-muted);
+      border-radius: var(--radius-sm);
+      color: var(--color-text-secondary);
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 1024px) {
+      .portal-layout {
+        grid-template-columns: 1fr 240px;
+      }
+      .channel-sidebar {
+        grid-column: 1 / -1;
+        position: static;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1rem;
+      }
+      .channel-sidebar h3 { margin-bottom: 0; margin-right: 0.5rem; }
+      .channel-sidebar ul { display: flex; flex-wrap: wrap; gap: 0.2rem; }
+      .channel-sidebar a { padding: 0.25rem 0.7rem; font-size: 0.85rem; }
+      .aux-sidebar { position: static; }
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .hero-content .hero-sub { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 740px) {
+      .portal-layout { grid-template-columns: 1fr; }
+      .announcement-bar { font-size: 0.75rem; padding: 5px 0.5rem; }
+      .site-header { padding: 0.5rem 1rem; gap: 0.8rem; }
+      .brand { font-size: 1.2rem; }
+      .header-nav { font-size: 0.8rem; gap: 0.3rem 0.8rem; }
+      .search-box input { width: 100px; }
+      .hero { padding: 1.5rem 1rem; }
+      .hero-content h1 { font-size: 2rem; }
+      .container { padding: 1rem 1rem 2rem; }
+      .card-grid { grid-template-columns: 1fr; }
+      .category-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .comment-item { flex-direction: column; }
+      .news-item { flex-direction: column; gap: 0.2rem; }
+    }
+  </style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+  <div class="sticky-wrapper">
+    <div class="announcement-bar">
+      <strong>本周新增 12 条情感档案</strong> · 11 月 7 日“冬季亲密关系”专题已上线 · 今晚 21:00 情感咨询直播预告
+    </div>
+    <header class="site-header">
+      <a href="/#hero" class="brand" aria-label="爱情岛首页">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="16" cy="16" r="14" fill="#d81b60"/>
+          <path d="M16 24c-4-4-8-7.5-8-11.5 0-3 2.5-5.5 5.5-5.5 1.5 0 3 1 4.5 2.5 1.5-1.5 3-2.5 4.5-2.5 3 0 5.5 2.5 5.5 5.5 0 4-4 7.5-8 11.5z" fill="#fff"/>
+        </svg>
+        爱情岛
+      </a>
+      <nav class="header-nav" aria-label="主题导航">
+        <a href="/#overview">领域概览</a>
+        <a href="/#featured">精选推荐</a>
+        <a href="/#latest">最新动态</a>
+        <a href="/#categories">分类入口</a>
+        <a href="/#deep-dive">深度解析</a>
+        <a href="/#guide">体验指南</a>
+        <a href="/#faq">常见问答</a>
+        <a href="/#comments">用户评论</a>
+      </nav>
+      <div class="header-actions">
+        <div class="search-box">
+          <input type="search" id="searchInput" placeholder="搜索条目…" aria-label="搜索站内内容">
+          <button type="button" id="searchBtn">搜索</button>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <main class="container">
+    <!-- 首屏 -->
+    <section class="hero" id="hero">
+      <div class="hero-content">
+        <h1>爱情岛</h1>
+        <p class="hero-sub">汇聚情感话题讨论、恋爱技巧攻略、伴侣匹配测试与真实关系案例解析，为正在探索亲密关系的你提供可参考的内容与社区视角。</p>
+        <div class="hero-actions">
+          <a href="/#featured" class="btn">浏览精选内容</a>
+          <a href="/#categories" class="btn btn-outline">按分类查找</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <svg width="280" height="220" viewBox="0 0 280 220" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+          <rect x="20" y="20" width="240" height="180" rx="16" fill="#fce4ec"/>
+          <circle cx="140" cy="90" r="34" fill="#f8bbd0"/>
+          <path d="M110 130h60v10c0 5.5-4.5 10-10 10h-40c-5.5 0-10-4.5-10-10v-10z" fill="#d81b60" opacity="0.5"/>
+          <circle cx="92" cy="70" r="14" fill="#f48fb1"/>
+          <circle cx="188" cy="70" r="14" fill="#f48fb1"/>
+          <rect x="60" y="160" width="160" height="8" rx="4" fill="#d81b60" opacity="0.25"/>
+          <rect x="80" y="174" width="120" height="6" rx="3" fill="#d81b60" opacity="0.15"/>
+          <path d="M140 58l-6 8h12l-6-8z" fill="#d81b60"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- 三栏门户 -->
+    <div class="portal-layout">
+      <!-- 左侧频道索引 -->
+      <aside class="channel-sidebar" aria-label="频道索引">
+        <h3>频道</h3>
+        <ul>
+          <li><a href="/#overview">领域概览</a></li>
+          <li><a href="/#featured">精选推荐</a></li>
+          <li><a href="/#latest">最新动态</a></li>
+          <li><a href="/#categories">分类入口</a></li>
+          <li><a href="/#deep-dive">深度解析</a></li>
+          <li><a href="/#guide">体验指南</a></li>
+          <li><a href="/#faq">常见问答</a></li>
+          <li><a href="/#comments">用户评论</a></li>
+          <li><a href="/#news">相关资讯</a></li>
+          <li><a href="/#related">相关推荐</a></li>
+          <li><a href="/#ranking">热门榜单</a></li>
+        </ul>
+      </aside>
+
+      <!-- 主内容区 -->
+      <div class="main-column">
+        <!-- 1. 主题领域概览 -->
+        <section class="content-section" id="overview">
+          <h2 class="section-title">爱情岛领域概览</h2>
+          <p>爱情岛作为一个情感交流与伴侣匹配的内容聚合方向，涵盖了亲密关系建立与维护的多个层面。当前值得关注的具体方向包括：<strong>情感话题讨论</strong>（如异地恋沟通、冲突处理）、<strong>恋爱技巧攻略</strong>（如初次约会话题、长期关系保鲜）、<strong>伴侣匹配测试</strong>（如价值观匹配、依恋类型评估）、<strong>真实关系案例解析</strong>（如分手复盘、复合决策）以及<strong>社区互动与经验分享</strong>。这些内容服务于不同阶段的读者——无论是刚开始探索亲密关系的年轻人，还是希望改善现有伴侣沟通方式的长期伴侣，都能在爱情岛的内容体系中找到对应的参考条目。</p>
+          <p>当前社区讨论热度较高的具体条目包括“依恋类型与冲突模式”“长期关系中的新鲜感维持”“跨城市伴侣的见面频率规划”等。平台收录的案例档案按关系阶段和问题类型进行了分类，方便按需查阅。</p>
+        </section>
+
+        <!-- 2. 精选内容推荐 -->
+        <section class="content-section" id="featured">
+          <h2 class="section-title">精选内容推荐</h2>
+          <p class="section-desc">根据社区互动与更新频率筛选的当前可读条目。</p>
+          <div class="card-grid">
+            <article class="card">
+              <img src="https://picsum.photos/seed/aiqing-dao01/400/300" alt="依恋类型与亲密关系档案封面" width="400" height="300" loading="lazy">
+              <div class="card-body">
+                <span class="card-tag">关系心理</span>
+                <h4>依恋类型与冲突模式解析</h4>
+                <p>安全型、焦虑型、回避型在争吵中的典型反应，附 12 个伴侣对话案例对照。</p>
+                <div class="card-meta"><span>更新 11-07</span><span>热度 9.2</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <img src="https://picsum.photos/seed/aiqing-dao02/400/300" alt="异地恋沟通节奏指南封面" width="400" height="300" loading="lazy">
+              <div class="card-body">
+                <span class="card-tag">沟通技巧</span>
+                <h4>异地恋沟通节奏指南</h4>
+                <p>从每日联络频率到见面周期规划，整理 8 个异地伴侣的实际时间表。</p>
+                <div class="card-meta"><span>更新 11-05</span><span>热度 8.7</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <img src="https://picsum.photos/seed/aiqing-dao03/400/300" alt="初次约会话题清单封面" width="400" height="300" loading="lazy">
+              <div class="card-body">
+                <span class="card-tag">约会实战</span>
+                <h4>初次约会话题清单</h4>
+                <p>避免冷场的 20 个开放式问题，按场景分为轻松破冰与深度了解两组。</p>
+                <div class="card-meta"><span>更新 11-03</span><span>热度 9.5</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <img src="https://picsum.photos/seed/aiqing-dao04/400/300" alt="长期关系保鲜方法集封面" width="400" height="300" loading="lazy">
+              <div class="card-body">
+                <span class="card-tag">长期关系</span>
+                <h4>长期关系保鲜方法集</h4>
+                <p>收集 15 对 5 年以上伴侣的日常仪式，包括月度约会与年度复盘模板。</p>
+                <div class="card-meta"><span>更新 11-06</span><span>热度 8.9</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <img src="https://picsum.photos/seed/aiqing-dao05/400/300" alt="伴侣价值观匹配测试说明封面" width="400" height="300" loading="lazy">
+              <div class="card-body">
+                <span class="card-tag">匹配测试</span>
+                <h4>伴侣价值观匹配测试说明</h4>
+                <p>围绕金钱观、家庭观、职业规划三个维度的自评工具与结果解读。</p>
+                <div class="card-meta"><span>更新 11-04</span><span>热度 8.3</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <img src="https://picsum.photos/seed/aiqing-dao06/400/300" alt="分手复盘案例档案封面" width="400" height="300" loading="lazy">
+              <div class="card-body">
+                <span class="card-tag">案例解析</span>
+                <h4>分手复盘案例档案</h4>
+                <p>6 个不同原因导致的分手故事，每个附有当事人事后总结的关键转折点。</p>
+                <div class="card-meta"><span>更新 11-02</span><span>热度 9.0</span></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- 3. 最新更新 / 动态 -->
+        <section class="content-section" id="latest">
+          <h2 class="section-title">最新更新 / 动态</h2>
+          <ul class="compact-list">
+            <li><span class="list-title">《依恋类型与冲突模式解析》新增 3 个回避型案例</span><span class="list-meta">今天 09:15</span></li>
+            <li><span class="list-title">“冬季亲密关系”专题上线，收录 5 篇关系维护指南</span><span class="list-meta">今天 08:40</span></li>
+            <li><span class="list-title">伴侣沟通工作坊直播预约开启（11 月 10 日 20:00）</span><span class="list-meta">昨天 21:10</span></li>
+            <li><span class="list-title">《异地恋沟通节奏指南》更新见面周期规划表</span><span class="list-meta">11 月 7 日</span></li>
+            <li><span class="list-title">新增“复合决策评估”问答条目，含 4 个判断维度</span><span class="list-meta">11 月 6 日</span></li>
+            <li><span class="list-title">社区讨论热帖“长期关系中的个人空间边界”</span><span class="list-meta">11 月 5 日</span></li>
+            <li><span class="list-title">《伴侣价值观匹配测试说明》补充金钱观评分细则</span><span class="list-meta">11 月 4 日</span></li>
+            <li><span class="list-title">分手复盘案例档案新增“异地结束”类型</span><span class="list-meta">11 月 3 日</span></li>
+          </ul>
+        </section>
+
+        <!-- 4. 分类入口 -->
+        <section class="content-section" id="categories">
+          <h2 class="section-title">分类入口</h2>
+          <p class="section-desc">按情感话题类型快速定位内容。</p>
+          <div class="category-grid">
+            <a href="/#featured" class="category-item">关系心理</a>
+            <a href="/#featured" class="category-item">沟通技巧</a>
+            <a href="/#featured" class="category-item">约会实战</a>
+            <a href="/#featured" class="category-item">长期关系</a>
+            <a href="/#featured" class="category-item">匹配测试</a>
+            <a href="/#featured" class="category-item">案例解析</a>
+            <a href="/#deep-dive" class="category-item">冲突处理</a>
+            <a href="/#deep-dive" class="category-item">自我成长</a>
+          </div>
+        </section>
+
+        <!-- 5. 深度解析正文 -->
+        <section class="content-section deep-dive" id="deep-dive">
+          <h2 class="section-title">深度解析：亲密关系内容的选择与判断</h2>
+          <h3>不同关系阶段的内容侧重</h3>
+          <p>亲密关系的内容需求随阶段变化明显。单身阶段更关注自我认知与初次约会技巧，例如“如何通过对话了解对方价值观”“第一次约会适合聊什么话题”。进入稳定关系后，冲突处理与长期保鲜成为核心议题，像“争吵后的修复对话步骤”“共同目标设定方法”这类条目更实用。爱情岛的内容分类正是按这些阶段划分的，方便按当前状态筛选。</p>
+          <h3>匹配测试类内容的参考维度</h3>
+          <p>伴侣匹配测试通常围绕几个可观察的维度展开：价值观（金钱、家庭、职业）、依恋类型（安全、焦虑、回避）、沟通风格（直接/委婉、即时/延迟）、冲突处理模式（回避、对抗、协商）。阅读这类内容时，可以对照自己和伴侣在各维度上的倾向，而不是追求单一分数。例如“焦虑型与回避型组合的常见循环”这一条目，就具体描述了追逃模式如何形成以及可能的打断方式。</p>
+          <ul>
+            <li><strong>价值观匹配：</strong>重点看双方对储蓄、消费、家庭责任的优先级排序是否接近。</li>
+            <li><strong>依恋类型：</strong>理解自己和伴侣在压力下的默认反应，而非贴标签。</li>
+            <li><strong>沟通风格：</strong>注意信息接收和表达节奏的差异，找到折中方式。</li>
+            <li><strong>冲突处理：</strong>观察争吵后双方是主动修复还是需要冷静期，据此调整期待。</li>
+          </ul>
+          <h3>案例解析的阅读方法</h3>
+          <p>爱情岛收录的关系案例通常包含背景、关键事件、双方反应和事后总结四个部分。阅读时建议先看“关键转折点”，再对照自身经历。比如“异地结束案例”中，当事人将分手归因于见面频率下降后的信任松动，而不是单一事件。这类具体归因比笼统的“性格不合”更有参考价值。另一个例子是“复合决策评估”，它列出了四个判断维度：分手原因是否可改变、双方改变意愿、信任重建成本、未来规划一致性。读者可以用这些维度来梳理自己的情况。</p>
+        </section>
+
+        <!-- 6. 体验指南 / 消费路径 -->
+        <section class="content-section" id="guide">
+          <h2 class="section-title">体验指南：从哪类内容开始</h2>
+          <p>如果你是第一次接触爱情岛的内容，可以按以下顺序建立参考框架：</p>
+          <ol style="padding-left:1.5rem;margin-bottom:1rem;font-size:0.95rem;">
+            <li><strong>先看关系阶段匹配的概述：</strong>比如“单身阶段自我认知清单”或“稳定关系季度复盘模板”，确定自己当前最需要哪类信息。</li>
+            <li><strong>再选一个具体场景条目：</strong>如“初次约会话题”“异地沟通频率”，这类条目通常有可直接尝试的步骤。</li>
+            <li><strong>对照案例解析理解常见模式：</strong>选择与自己情况接近的案例，重点看当事人的判断依据而非结果。</li>
+            <li><strong>用匹配测试做辅助参考：</strong>把测试结果当作讨论起点，和伴侣一起看差异点，而不是当作结论。</li>
+          </ol>
+          <p>判断一个条目是否值得投入时间，可以看它是否包含具体场景、可操作的步骤或可对照的案例细节。如果只有抽象建议，参考价值通常较低。比较两个相似条目时，优先选择更新时间更近、案例数量更多的那个。</p>
+        </section>
+
+        <!-- 7. FAQ -->
+        <section class="content-section" id="faq">
+          <h2 class="section-title">常见问答</h2>
+          <details class="faq-item">
+            <summary>依恋类型测试的结果会一成不变吗？</summary>
+            <p>依恋类型不是固定标签。随着关系经历和自我反思，焦虑或回避的倾向可以发生变化。测试结果更适合作为当前状态的参考，而不是终身判定。建议每隔半年或在重大关系变化后重新对照。</p>
+          </details>
+          <details class="faq-item">
+            <summary>异地恋一般多久见一次比较合适？</summary>
+            <p>没有统一标准，常见参考是每月 1—2 次，但更重要的是双方对频率的共识。如果交通成本高，可以规划每 2—3 个月一次较长见面，并配合固定的视频时间。关键是避免一方感到被忽视。</p>
+          </details>
+          <details class="faq-item">
+            <summary>第一次约会聊什么话题不容易冷场？</summary>
+            <p>优先选择开放式问题，比如“你最近在学什么新东西”“你理想中的周末是怎样的”。避免查户口式提问和过于私密的话题。可以准备 3—5 个轻松话题作为备用，但更重要的是对对方的回答保持好奇。</p>
+          </details>
+          <details class="faq-item">
+            <summary>长期关系中如何判断是正常摩擦还是需要警惕的信号？</summary>
+            <p>正常摩擦通常围绕具体事件，吵完后能回到沟通。需要警惕的信号包括：一方长期回避沟通、贬低对方感受、反复出现同一模式且拒绝讨论。可以对照“冲突处理模式”条目中的描述来判断。</p>
+          </details>
+          <details class="faq-item">
+            <summary>伴侣价值观匹配测试主要看哪些维度？</summary>
+            <p>常见维度包括金钱使用习惯（储蓄与消费比例）、家庭责任分工预期、职业发展与居住地偏好。这三个维度对长期共同生活影响较大。测试结果用来开启对话，而不是打分排名。</p>
+          </details>
+          <details class="faq-item">
+            <summary>分手后想复合，应该先考虑什么？</summary>
+            <p>先评估分手原因是否可改变，以及双方是否有意愿调整。可以对照“复合决策评估”中的四个维度：原因是否可改变、改变意愿、信任重建成本、未来规划是否一致。如果原因涉及原则性伤害且对方没有改变意愿，复合后的风险较高。</p>
+          </details>
+        </section>
+
+        <!-- 8. 用户评论 -->
+        <section class="content-section" id="comments">
+          <h2 class="section-title">用户评论</h2>
+          <div class="comment-list">
+            <div class="comment-item"><div class="comment-avatar">林</div><div class="comment-body"><div class="comment-name">林间小鹿</div><div class="comment-text">依恋类型那篇的案例很真实，我发现自己和伴侣的争吵模式就是焦虑追回避逃，现在会主动叫暂停。</div><div class="comment-time">今天 10:20</div></div></div>
+            <div class="comment-item"><div class="comment-avatar">陈</div><div class="comment-body"><div class="comment-name">陈默</div><div class="comment-text">异地恋沟通节奏指南里的见面周期表挺有用，我们照着自己的情况调整成每六周见一次，压力小了很多。</div><div class="comment-time">今天 09:05</div></div></div>
+            <div class="comment-item"><div class="comment-avatar">苏</div><div class="comment-body"><div class="comment-name">苏打水不加冰</div><div class="comment-text">第一次约会话题清单救了社恐的我，挑了三个问题用，对方说跟我聊天很舒服。</div><div class="comment-time">昨天 22:40</div></div></div>
+            <div class="comment-item"><div class="comment-avatar">周</div><div class="comment-body"><div class="comment-name">周末不加班</div><div class="comment-text">长期关系保鲜方法集里的月度约会仪式我们试了两个月，确实比之前各刷各的手机好。</div><div class="comment-time">昨天 20:15</div></div></div>
+            <div class="comment-item"><div class="comment-avatar">何</div><div class="comment-body"><div class="comment-name">何以为安</div><div class="comment-text">价值观匹配测试里的金钱观部分让我和对象聊了一次深度对话，虽然有些分歧但至少知道了。</div><div class="comment-time">11 月 7 日 18:30</div></div></div>
+            <div class="comment-item"><div class="comment-avatar">白</div><div class="comment-body"><div class="comment-name">白桃乌龙</div><div class="comment-text">分手复盘案例看了好几个，发现很多问题其实早有信号，只是当时没在意。</div><div class="comment-time">11 月 7 日 15:10</div></div></div>
+            <div class="comment-item"><div class="comment-avatar">赵</div><div class="comment-body"><div class="comment-name">赵小满</div><div class="comment-text">复合决策评估那个维度表很冷静，帮我理清了到底是舍不得还是真的想重新开始。</div><div class="comment-time">11 月 6 日 21:05</div></div></div>
+            <div class="comment-item"><div class="comment-avatar">李</div><div class="comment-body"><div class="comment-name">李子树下</div><div class="comment-text">冲突处理的内容偏少了一点，希望多出一些关于“如何道歉”和“如何接受道歉”的具体条目。</div><div class="comment-time">11 月 6 日 14:20</div></div></div>
+            <div class="comment-item"><div class="comment-avatar">吴</div><div class="comment-body"><div class="comment-name">吴聊青年</div><div class="comment-text">冬季亲密关系专题里的“共同目标设定”很适合年底复盘，我们列了明年的三个共同计划。</div><div class="comment-time">11 月 5 日 19:40</div></div></div>
+            <div class="comment-item"><div class="comment-avatar">郑</div><div class="comment-body"><div class="comment-name">郑在输入</div><div class="comment-text">匹配测试别太当真，我测出来和伴侣匹配度一般，但实际相处挺好，可能我们都不太依赖标签。</div><div class="comment-time">11 月 5 日 11:25</div></div></div>
+            <div class="comment-item"><div class="comment-avatar">孙</div><div class="comment-body"><div class="comment-name">孙小美</div><div class="comment-text">第一次约会话题清单很实用，不过建议加一些关于“对方不想聊时如何自然切换”的提示。</div><div class="comment-time">11 月 4 日 20:50</div></div></div>
+            <div class="comment-item"><div class="comment-avatar">刘</div><div class="comment-body"><div class="comment-name">刘浪者</div><div class="comment-text">异地恋见面周期表如果能有不同预算区间的方案就更好了，学生党和工作党情况不同。</div><div class="comment-time">11 月 4 日 09:30</div></div></div>
+            <div class="comment-item"><div class="comment-avatar">黄</div><div class="comment-body"><div class="comment-name">黄昏收集者</div><div class="comment-text">案例解析里的“关键转折点”总结方式很好，比单纯讲故事更有参考价值。</div><div class="comment-time">11 月 3 日 22:15</div></div></div>
+            <div class="comment-item"><div class="comment-avatar">徐</div><div class="comment-body"><div class="comment-name">徐徐图之</div><div class="comment-text">希望多更新一些关于“如何建立信任”的具体条目，目前更多是冲突和测试类。</div><div class="comment-time">11 月 3 日 16:40</div></div></div>
+          </div>
+        </section>
+
+        <!-- 9. 相关资讯 -->
+        <section class="content-section" id="news">
+          <h2 class="section-title">相关资讯</h2>
+          <div class="news-item">
+            <div class="news-date">2026-11-08</div>
+            <div class="news-content"><h4>“冬季亲密关系”专题上线，收录 5 篇关系维护指南</h4><p>专题聚焦年末节日密集期的伴侣沟通与家庭关系平衡，包含礼物 expectations 管理和聚会压力应对。</p></div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">2026-11-07</div>
+            <div class="news-content"><h4>《依恋类型与冲突模式解析》新增回避型案例</h4><p>补充了 3 个回避型依恋在冲突中沉默或撤离的案例，并给出了伴侣可尝试的低压开启对话方式。</p></div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">2026-11-06</div>
+            <div class="news-content"><h4>社区讨论热帖“长期关系中的个人空间边界”</h4><p>帖子围绕同居后如何保留独处时间展开，评论区出现了多种时间分配方案。</p></div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">2026-11-05</div>
+            <div class="news-content"><h4>伴侣沟通工作坊直播预约开启</h4><p>11 月 10 日 20:00 的直播将演示“非暴力沟通”在亲密关系中的具体用法，含问答环节。</p></div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">2026-11-04</div>
+            <div class="news-content"><h4>《伴侣价值观匹配测试说明》补充金钱观评分细则</h4><p>新增了储蓄比例、大额消费决策流程等具体问题的计分说明，帮助读者更细致地对照。</p></div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">2026-11-02</div>
+            <div class="news-content"><h4>分手复盘案例档案新增“异地结束”类型</h4><p>该案例详细记录了从见面频率下降到信任松动的过程，以及双方事后对关键节点的复盘。</p></div>
+          </div>
+        </section>
+
+        <!-- 10. 相关推荐 -->
+        <section class="content-section" id="related">
+          <h2 class="section-title">相关推荐</h2>
+          <div class="tag-cloud">
+            <a href="/#featured">安全型依恋培养</a>
+            <a href="/#featured">争吵后修复对话</a>
+            <a href="/#featured">共同目标设定模板</a>
+            <a href="/#featured">异地见面预算规划</a>
+            <a href="/#featured">金钱观差异沟通</a>
+            <a href="/#featured">家庭责任分工讨论</a>
+            <a href="/#deep-dive">复合决策四维度</a>
+            <a href="/#deep-dive">信任重建步骤</a>
+          </div>
+        </section>
+
+        <!-- 11. 补充板块：热门榜单 -->
+        <section class="content-section" id="ranking">
+          <h2 class="section-title">热门榜单</h2>
+          <ul class="compact-list">
+            <li><span><span class="rank-num">1</span> 依恋类型与冲突模式解析</span><span class="list-meta">热度 9.2</span></li>
+            <li><span><span class="rank-num">2</span> 初次约会话题清单</span><span class="list-meta">热度 9.5</span></li>
+            <li><span><span class="rank-num">3</span> 长期关系保鲜方法集</span><span class="list-meta">热度 8.9</span></li>
+            <li><span><span class="rank-num">4</span> 异地恋沟通节奏指南</span><span class="list-meta">热度 8.7</span></li>
+            <li><span><span class="rank-num">5</span> 分手复盘案例档案</span><span class="list-meta">热度 9.0</span></li>
+            <li><span><span class="rank-num">6</span> 伴侣价值观匹配测试说明</span><span class="list-meta">热度 8.3</span></li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- 右侧辅助栏 -->
+      <aside class="aux-sidebar">
+        <div class="aux-card">
+          <h3>本周热榜</h3>
+          <ul>
+            <li><span><span class="rank-num">1</span>依恋类型与冲突模式</span><span>9.2</span></li>
+            <li><span><span class="rank-num">2</span>初次约会话题清单</span><span>9.5</span></li>
+            <li><span><span class="rank-num">3</span>长期关系保鲜方法集</span><span>8.9</span></li>
+            <li><span><span class="rank-num">4</span>异地恋沟通节奏</span><span>8.7</span></li>
+            <li><span><span class="rank-num">5</span>分手复盘案例档案</span><span>9.0</span></li>
+          </ul>
+        </div>
+        <div class="aux-card">
+          <h3>标签索引</h3>
+          <div class="tag-cloud">
+            <a href="/#featured">依恋类型</a>
+            <a href="/#featured">异地恋</a>
+            <a href="/#featured">约会话题</a>
+            <a href="/#featured">长期关系</a>
+            <a href="/#featured">匹配测试</a>
+            <a href="/#featured">冲突处理</a>
+            <a href="/#featured">分手复盘</a>
+            <a href="/#featured">复合决策</a>
+          </div>
+        </div>
+        <div class="aux-card">
+          <h3>更新日历</h3>
+          <ul>
+            <li><span>11 月 8 日</span><span>新增 12 条档案</span></li>
+            <li><span>11 月 7 日</span><span>专题上线</span></li>
+            <li><span>11 月 6 日</span><span>直播预约</span></li>
+            <li><span>11 月 5 日</span><span>指南更新</span></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- 页尾 -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="vertical-align:middle;">
+            <circle cx="16" cy="16" r="14" fill="#f06292"/>
+            <path d="M16 24c-4-4-8-7.5-8-11.5 0-3 2.5-5.5 5.5-5.5 1.5 0 3 1 4.5 2.5 1.5-1.5 3-2.5 4.5-2.5 3 0 5.5 2.5 5.5 5.5 0 4-4 7.5-8 11.5z" fill="#fff"/>
+          </svg>
+          爱情岛
+        </h3>
+        <p>聚焦情感话题讨论、恋爱技巧攻略与伴侣匹配测试的内容聚合页面，为亲密关系探索提供可参考的条目与案例。</p>
+      </div>
+      <div class="footer-col">
+        <h4>内容栏目</h4>
+        <ul>
+          <li><a href="/#overview">领域概览</a></li>
+          <li><a href="/#featured">精选推荐</a></li>
+          <li><a href="/#latest">最新动态</a></li>
+          <li><a href="/#categories">分类入口</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>深度与指南</h4>
+        <ul>
+          <li><a href="/#deep-dive">深度解析</a></li>
+          <li><a href="/#guide">体验指南</a></li>
+          <li><a href="/#faq">常见问答</a></li>
+          <li><a href="/#comments">用户评论</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>更多</h4>
+        <ul>
+          <li><a href="/#news">相关资讯</a></li>
+          <li><a href="/#related">相关推荐</a></li>
+          <li><a href="/#ranking">热门榜单</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 爱情岛 · 内容聚合示例页面</span>
+      <span>部分内容为示例数据，仅用于展示页面结构</span>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      const searchInput = document.getElementById('searchInput');
+      const searchBtn = document.getElementById('searchBtn');
+      const allSections = document.querySelectorAll('.content-section');
+      const cards = document.querySelectorAll('.card, .compact-list li, .faq-item, .comment-item, .news-item, .category-item, .tag-cloud a, .aux-card li');
+
+      // 创建反馈元素
+      const feedback = document.createElement('div');
+      feedback.className = 'search-feedback';
+      feedback.textContent = '没有找到匹配的内容，请尝试其他关键词。';
+
+      function performSearch() {
+        const query = searchInput.value.trim().toLowerCase();
+        // 移除旧反馈
+        const oldFeedback = document.querySelector('.search-feedback');
+        if (oldFeedback) oldFeedback.remove();
+
+        if (!query) {
+          cards.forEach(el => el.style.display = '');
+          allSections.forEach(sec => sec.style.display = '');
+          return;
+        }
+
+        let hasVisible = false;
+        cards.forEach(el => {
+          const text = el.textContent.toLowerCase();
+          if (text.includes(query)) {
+            el.style.display = '';
+            hasVisible = true;
+          } else {
+            el.style.display = 'none';
+          }
+        });
+
+        // 处理分类入口（a 标签）
+        document.querySelectorAll('.category-item').forEach(el => {
+          const text = el.textContent.toLowerCase();
+          if (text.includes(query)) {
+            el.style.display = '';
+            hasVisible = true;
+          } else {
+            el.style.display = 'none';
+          }
+        });
+
+        // 显示反馈
+        if (!hasVisible) {
+          const mainCol = document.querySelector('.main-column');
+          mainCol.appendChild(feedback);
+        }
+      }
+
+      searchBtn.addEventListener('click', performSearch);
+      searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          performSearch();
+        }
+      });
+
+      // 点击搜索框外清除反馈
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.search-box')) {
+          const fb = document.querySelector('.search-feedback');
+          if (fb) fb.remove();
+          if (searchInput.value.trim() === '') {
+            cards.forEach(el => el.style.display = '');
+            document.querySelectorAll('.category-item').forEach(el => el.style.display = '');
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+            </html>
